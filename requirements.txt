@@ -16,3 +16,4 @@ scipy==1.11.2
 scikit-learn==1.3.2
 typing-extensions
 regex
+nlp-id == 0.1.18.0
