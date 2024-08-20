@@ -64,9 +64,9 @@ def dashboard():
     df_clean_tokped['at'] = df_clean_tokped['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
     
     # Subset kolom di dataset
-    df_clean_shopee = df_clean_shopee[['content', 'score', 'thumbsUpCount', 'at', 'year']]
-    df_clean_lazada = df_clean_lazada[['content', 'score', 'thumbsUpCount', 'at', 'year']]
-    df_clean_tokped = df_clean_tokped[['content', 'score', 'thumbsUpCount', 'at', 'year']]
+    df_clean_shopee = df_clean_shopee[['content', 'at', 'year']]
+    df_clean_lazada = df_clean_lazada[['content', 'at', 'year']]
+    df_clean_tokped = df_clean_tokped[['content', 'at', 'year']]
     
     
 
@@ -96,7 +96,7 @@ def dashboard():
                 filtered_df = df_clean_shopee[df_clean_shopee['year'].isin(selected_years)]
                 st.write(f"Data untuk tahun {', '.join(map(str, selected_years))}")
                 # Subset kolom di dataset
-                df_clean_shopee = filtered_df[['content', 'score', 'thumbsUpCount', 'at', 'year']]
+                df_clean_shopee = filtered_df[['content', 'at', 'year']]
             else:
                 st.write("Pilih tahun untuk memfilter data berdasarkan tahun")
         else:
@@ -454,7 +454,7 @@ def dashboard():
                 filtered_df = df_clean_lazada[df_clean_lazada['year'].isin(selected_years)]
                 st.write(f"Data untuk tahun {', '.join(map(str, selected_years))}")
                 # Subset kolom di dataset
-                df_clean_lazada = filtered_df[['content', 'score', 'thumbsUpCount', 'at', 'year']]
+                df_clean_lazada = filtered_df[['content', 'at', 'year']]
             else:
                 st.write("Pilih tahun untuk memfilter data berdasarkan tahun")
         else:
@@ -813,7 +813,7 @@ def dashboard():
                 filtered_df = df_clean_tokped[df_clean_tokped['year'].isin(selected_years)]
                 st.write(f"Data untuk tahun {', '.join(map(str, selected_years))}")
                 # Subset kolom di dataset
-                df_clean_tokped = filtered_df[['content', 'score', 'thumbsUpCount', 'at', 'year']]
+                df_clean_tokped = filtered_df[['content', 'at', 'year']]
             else:
                 st.write("Pilih tahun untuk memfilter data berdasarkan tahun")
         else:
