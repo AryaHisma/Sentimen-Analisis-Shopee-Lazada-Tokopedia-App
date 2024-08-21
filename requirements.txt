@@ -18,3 +18,4 @@ scikit-learn
 typing-extensions
 regex
 nlp-id
+memory_profiler
