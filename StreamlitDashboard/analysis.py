@@ -888,7 +888,7 @@ def analysis():
             def plt_freq_meanlength_word_shopee():
                 return text_analyzer_project.freq_meanlength_word(data_grafik_shopee(), col='content')
             
-            st.plotly_chart(plt_freq_meanlength_word_shopee)
+            st.plotly_chart(plt_freq_meanlength_word_shopee())
             
     
     
