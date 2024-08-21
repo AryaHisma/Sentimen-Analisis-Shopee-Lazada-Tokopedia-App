@@ -19,7 +19,6 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from memory_profiler import profile
 
-import dask.dataframe as dd
 
 
 @profile
