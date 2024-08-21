@@ -5,7 +5,7 @@ from StreamlitDashboard.analysis import analysis
 from StreamlitDashboard.paragraf_analisis_app import aplikasi
 from StreamlitDashboard.about import about
 
-@st.cache_data(persist=True)
+@st.cache_data(persist=True, allow_output_mutation=True)
 def load_image(image_path):
     return Image.open(image_path)
 

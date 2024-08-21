@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 def dashboard():
     with st.container(height=215):
-        @st.cache_data(persist=True)
+        @st.cache_data(persist=True, allow_output_mutation=True)
         def display_image(image_path, use_column_width=True, channels="RGB"):
             """
             Menampilkan gambar di Streamlit.
@@ -157,7 +157,7 @@ def dashboard():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data(persist=True)
+                @st.cache_data(persist=True, allow_output_mutation=True)
                 def generate_wordcloud_shopee(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -260,7 +260,7 @@ def dashboard():
                             most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
                             ''')
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata (df, most_common):
                     # Tampilkan DataFrame dengan pengaturan tampilan khusus
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
@@ -329,7 +329,7 @@ def dashboard():
                         ''')
                 
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata_dengan_parameter(df, most_common, center_node, depth):
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
 
@@ -515,7 +515,7 @@ def dashboard():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data(persist=True)
+                @st.cache_data(persist=True, allow_output_mutation=True)
                 def generate_wordcloud_lazada(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -618,7 +618,7 @@ def dashboard():
                             most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
                             ''')
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata (df, most_common):
                     # Tampilkan DataFrame dengan pengaturan tampilan khusus
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
@@ -687,7 +687,7 @@ def dashboard():
                         ''')
                 
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata_dengan_parameter(df, most_common, center_node, depth):
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
 
@@ -874,7 +874,7 @@ def dashboard():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data(persist=True)
+                @st.cache_data(persist=True, allow_output_mutation=True)
                 def generate_wordcloud_tokped(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -977,7 +977,7 @@ def dashboard():
                             most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
                             ''')
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata (df, most_common):
                     # Tampilkan DataFrame dengan pengaturan tampilan khusus
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
@@ -1045,7 +1045,7 @@ def dashboard():
                         ''')
                 
                 
-                # @st.cache_data(persist=True)
+                # @st.cache_data(persist=True, allow_output_mutation=True)
                 def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata_dengan_parameter(df, most_common, center_node, depth):
                     result_combine_top_4gram = text_analyzer_project.combine_top_ngram(df, col='content', n=4, most_common=most_common)
 
