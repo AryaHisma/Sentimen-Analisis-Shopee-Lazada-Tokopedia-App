@@ -6,6 +6,7 @@ from StreamlitDashboard.paragraf_analisis_app import aplikasi
 from StreamlitDashboard.about import about
 
 
+
 def load_image(image_path):
     return Image.open(image_path)
 

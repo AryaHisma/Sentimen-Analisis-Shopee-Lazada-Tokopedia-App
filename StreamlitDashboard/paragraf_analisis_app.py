@@ -13,6 +13,16 @@ from TextPreProcessing import text_analyzer_project
 import networkx as nx
 import matplotlib.pyplot as plt
 
+import nltk
+
+@st.cache_data(persist=True)
+def download_nltk_resources():
+    nltk.download('punkt')
+    nltk.download('stopwords')
+    
+# Panggil fungsi untuk mengunduh resource yang diperlukan
+download_nltk_resources()
+
 
 
 
