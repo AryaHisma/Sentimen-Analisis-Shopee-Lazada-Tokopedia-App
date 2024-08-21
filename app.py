@@ -1,4 +1,15 @@
 import streamlit as st 
+
+
+st.set_page_config(
+        page_title="Sentimen Analisis Marketplace Online",
+        page_icon=":department_store:",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
+
+
 from PIL import Image
 from StreamlitDashboard.dashboard import dashboard
 from StreamlitDashboard.analysis import analysis
@@ -33,13 +44,6 @@ def setup_sidebar():
 
 
 def run_app():
-    st.set_page_config(
-        page_title="Sentimen Analisis Marketplace Online",
-        page_icon=":department_store:",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
-
     setup_sidebar()
 
     if st.session_state.page == "Dashboard":

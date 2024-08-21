@@ -15,17 +15,6 @@ import matplotlib.pyplot as plt
 
 import nltk
 
-@st.cache_data(persist=True)
-def download_nltk_resources():
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    
-# Panggil fungsi untuk mengunduh resource yang diperlukan
-download_nltk_resources()
-
-
-
-
 def aplikasi():
     st.title('Paragraf Analisis App')
     
@@ -42,6 +31,15 @@ def aplikasi():
         if long_text.strip() == "":
             st.warning("Silakan masukkan teks untuk diproses.")
         else:
+            
+            @st.cache_data(persist=True)
+            def download_nltk_resources():
+                nltk.download('punkt')
+                nltk.download('stopwords')
+                
+            # Panggil fungsi untuk mengunduh resource yang diperlukan
+            download_nltk_resources()
+            
                       
             # Text preprocessing
             tp = TextProcessing()
@@ -53,6 +51,7 @@ def aplikasi():
                 text = tp.remove_emoji(text)
                 text = tp.text_cleaning(text)
                 text = tp.slang_transform(text)
+                text = tp.stemming(text)
                 text = tp.remove_stopwords(text)
     
                 return text
