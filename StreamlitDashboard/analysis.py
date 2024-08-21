@@ -11,7 +11,6 @@ import warnings
 warnings.filterwarnings('ignore')
 from PIL import Image
 
-from TextPreProcessing.text_processing_project import TextProcessing
 from TextPreProcessing import text_analyzer_project
 import nltk
 

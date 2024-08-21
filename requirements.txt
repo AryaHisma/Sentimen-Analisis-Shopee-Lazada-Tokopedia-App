@@ -15,3 +15,5 @@ scikit-learn
 typing-extensions
 regex
 memory_profiler
+nlp_id
+Sastrawi
