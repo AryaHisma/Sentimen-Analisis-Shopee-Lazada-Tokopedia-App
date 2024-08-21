@@ -24,7 +24,7 @@ from memory_profiler import profile
 @profile
 def analysis():
     with st.container(height=360):
-        @st.cache_data
+        @st.cache_data(persist=True)
         def display_image(image_path, use_column_width=True, channels="RGB"):
             """
             Menampilkan gambar di Streamlit.
@@ -48,7 +48,7 @@ def analysis():
 
     with tab_shopee:
         
-        @st.cache_data
+        @st.cache_data(persist=True)
         def display_data_shopee():
             df_raw_shopee = pd.read_csv("./assets/dataset/scrapped_data_shopee.csv")
             df_raw_shopee = df_raw_shopee[['content', 'at']]
@@ -61,7 +61,7 @@ def analysis():
         
     with tab_lazada:
         
-        @st.cache_data
+        @st.cache_data(persist=True)
         def display_data_lazada():
             df_raw_lazada = pd.read_csv("./assets/dataset/scrapped_data_lazada.csv")
             df_raw_lazada = df_raw_lazada[['content', 'at']]
@@ -74,7 +74,7 @@ def analysis():
         
     with tab_tokopedia:
         
-        @st.cache_data
+        @st.cache_data(persist=True)
         def display_data_tokped():
             df_raw_tokped = pd.read_csv("./assets/dataset/scrapped_data_tokped.csv")
             df_raw_tokped = df_raw_tokped[['content', 'at']]
@@ -116,7 +116,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_lower_case_shopee():
                 df_lowercase_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_text_clean_lower_shopee.pkl")
                 df_lowercase_shopee = df_lowercase_shopee[['content', 'at']]
@@ -135,7 +135,7 @@ def analysis():
             n_unique_words_shopee = len(get_dataset_after_lower_case_shopee()['content'].str.split(expand=True).stack().unique())
             
             # most_frequent_words_text_clean_lower_shopee
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_after_lowercase():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_lower_case_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -150,7 +150,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_lower_case_lazada():
                 df_lowercase_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_text_clean_lower_lazada.pkl")
                 df_lowercase_lazada = df_lowercase_lazada[['content', 'at']]
@@ -168,7 +168,7 @@ def analysis():
             n_unique_words_lazada = len(get_dataset_after_lower_case_lazada()['content'].str.split(expand=True).stack().unique())
             
             # most_frequent_words_text_clean_lower_lazada
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_after_lowercase():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_lower_case_lazada(), col='content', n=n_unique_words_shopee)
             
@@ -183,7 +183,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_lower_case_tokped():
                 df_lowercase_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_text_clean_lower_tokped.pkl")
                 df_lowercase_tokped = df_lowercase_tokped[['content', 'at']]
@@ -201,7 +201,7 @@ def analysis():
             n_unique_words_tokped = len(get_dataset_after_lower_case_tokped()['content'].str.split(expand=True).stack().unique())
             
             # most_frequent_words_text_clean_lower_lazada
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_after_lowercase():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_lower_case_tokped(), col='content', n=n_unique_words_shopee)
             
@@ -229,7 +229,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_removeemoji_shopee():
                 df_removeemoji_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_text_clean_emoji_shopee.pkl")
                 df_removeemoji_shopee = df_removeemoji_shopee[['content', 'at']]
@@ -247,7 +247,7 @@ def analysis():
             n_unique_words_shopee = len(get_dataset_after_removeemoji_shopee()['content'].str.split(expand=True).stack().unique())
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_after_removeemoji():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_removeemoji_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -263,7 +263,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_removeemoji_lazada():
                 df_removeemoji_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_text_clean_emoji_lazada.pkl")
                 df_removeemoji_lazada = df_removeemoji_lazada[['content', 'at']]
@@ -281,7 +281,7 @@ def analysis():
             n_unique_words_lazada = len(get_dataset_after_removeemoji_lazada()['content'].str.split(expand=True).stack().unique())
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_after_removeemoji():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_removeemoji_lazada(), col='content', n=n_unique_words_lazada)
             
@@ -297,7 +297,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_removeemoji_tokped():
                 df_removeemoji_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_text_clean_emoji_tokped.pkl")
                 df_removeemoji_tokped = df_removeemoji_tokped[['content', 'at']]
@@ -318,7 +318,7 @@ def analysis():
             st.subheader("Most frequent word after remove emoji")
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_after_removeemoji():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_removeemoji_tokped(), col='content', n=n_unique_words_tokped)
             
@@ -346,7 +346,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_textclean_shopee():
                 df_textcleaning_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_text_clean_shopee.pkl")
                 df_textcleaning_shopee = df_textcleaning_shopee[['content', 'at']]
@@ -364,7 +364,7 @@ def analysis():
             n_unique_words_shopee = len(get_dataset_after_textclean_shopee()['content'].str.split(expand=True).stack().unique())
         
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_after_textclean():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_textclean_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -379,7 +379,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_textclean_lazada():
                 df_textcleaning_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_text_clean_lazada.pkl")
                 df_textcleaning_lazada = df_textcleaning_lazada[['content', 'at']]
@@ -399,7 +399,7 @@ def analysis():
             st.subheader("Most frequent word after text cleaning")
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_after_textclean():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_textclean_lazada(), col='content', n=n_unique_words_lazada)
             
@@ -414,7 +414,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_textclean_tokped():
                 df_textcleaning_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_text_clean_tokped.pkl")
                 df_textcleaning_tokped = df_textcleaning_tokped[['content', 'at']]
@@ -435,7 +435,7 @@ def analysis():
             st.subheader("Most frequent word after text cleaning")
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_after_textclean():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_textclean_tokped(), col='content', n=n_unique_words_tokped)
             
@@ -464,7 +464,7 @@ def analysis():
             st.write("")
             
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_slang_shopee():
                 df_slang_shopee1 = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_text_slang1_shopee.pkl")
                 df_slang_shopee1 = df_slang_shopee1[['content', 'at']]
@@ -485,7 +485,7 @@ def analysis():
             st.subheader("Most frequent word after slang") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_slang():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_slang_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -500,7 +500,7 @@ def analysis():
             st.subheader("Dataset after slang")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_slang_lazada():
                 df_slang_lazada1 = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_text_slang1_lazada.pkl")
                 df_slang_lazada1 = df_slang_lazada1[['content', 'at']]
@@ -520,7 +520,7 @@ def analysis():
             st.subheader("Most frequent word after slang") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_slang():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_slang_lazada(), col='content', n=n_unique_words_lazada)
             
@@ -534,7 +534,7 @@ def analysis():
             st.subheader("Dataset after slang")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_slang_tokped():
                 df_slang_tokped1 = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_text_slang1_tokped.pkl")
                 df_slang_tokped1 = df_slang_tokped1[['content', 'at']]
@@ -555,7 +555,7 @@ def analysis():
             st.subheader("Most frequent word after slang") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_slang():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_slang_tokped(), col='content', n=n_unique_words_tokped)
             
@@ -585,7 +585,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stem_shopee():
                 df_stem_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_text_stemming_shopee.pkl")
                 df_stem_shopee = df_stem_shopee[['content', 'at']]
@@ -605,7 +605,7 @@ def analysis():
             st.subheader("Most frequent word after stemming") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_stem():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stem_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -620,7 +620,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stem_lazada():
                 df_stem_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_text_stemming_lazada.pkl")
                 df_stem_lazada = df_stem_lazada[['content', 'at']]
@@ -640,7 +640,7 @@ def analysis():
             st.subheader("Most frequent word after stemming") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_stem():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stem_lazada(), col='content', n=n_unique_words_lazada)
             
@@ -655,7 +655,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stem_tokped():
                 df_stem_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_text_stemming_tokped.pkl")
                 df_stem_tokped = df_stem_tokped[['content', 'at']]
@@ -675,7 +675,7 @@ def analysis():
             st.subheader("Most frequent word after stemming") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_stem():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stem_tokped(), col='content', n=n_unique_words_lazada)
             
@@ -702,7 +702,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stopword_shopee():
                 df_stopword_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.pkl")
                 df_stopword_shopee = df_stopword_shopee[['content', 'at']]
@@ -722,7 +722,7 @@ def analysis():
             st.subheader("Most frequent word after remove stopword") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_shopee_stopword():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stopword_shopee(), col='content', n=n_unique_words_shopee)
             
@@ -739,7 +739,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stopword_lazada():
                 df_stopword_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_stopword_lazada.pkl")
                 df_stopword_lazada = df_stopword_lazada[['content', 'at']]
@@ -759,7 +759,7 @@ def analysis():
             st.subheader("Most frequent word after remove stopword") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_lazada_stopword():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stopword_lazada(), col='content', n=n_unique_words_lazada)
             
@@ -776,7 +776,7 @@ def analysis():
             st.write("")
             st.write("")
             
-            @st.cache_data
+            @st.cache_data(persist=True)
             def get_dataset_after_stopword_tokped():
                 df_stopword_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_stopword_tokped.pkl")
                 df_stopword_tokped = df_stopword_tokped[['content', 'at']]
@@ -796,7 +796,7 @@ def analysis():
             st.subheader("Most frequent word after remove stopword") 
             
             # Mengambil kata-kata yang paling sering muncul
-            @st.cache_data
+            @st.cache_data(persist=True)
             def most_frequent_words_tokped_stopword():
                 return  text_analyzer_project.most_frequent_words(get_dataset_after_stopword_tokped(), col='content', n=n_unique_words_lazada)
             
@@ -806,7 +806,7 @@ def analysis():
     
     # Load data grafik
     
-    @st.cache_data
+    @st.cache_data(persist=True)
     def data_grafik_shopee():
         df_clean_shopee1 = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.pkl")
         df_clean_shopee1['at'] = pd.to_datetime(df_clean_shopee1['at'], errors='coerce')
@@ -815,7 +815,7 @@ def analysis():
         df_clean_shopee1 = df_clean_shopee1[['content', 'at', 'year']]
         return df_clean_shopee1
     
-    @st.cache_data
+    @st.cache_data(persist=True)
     def data_grafik_lazada():
         df_clean_lazada1 = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_stopword_lazada.pkl")
         df_clean_lazada1['at'] = pd.to_datetime(df_clean_lazada1['at'], errors='coerce')
@@ -824,7 +824,7 @@ def analysis():
         df_clean_lazada1 = df_clean_lazada1[['content', 'at', 'year']]
         return df_clean_lazada1
     
-    @st.cache_data
+    @st.cache_data(persist=True)
     def data_grafik_tokped():
         df_clean_tokped1 = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_stopword_tokped.pkl")
         df_clean_tokped1['at'] = pd.to_datetime(df_clean_tokped1['at'], errors='coerce')
@@ -865,7 +865,7 @@ def analysis():
         
         with col_freq_of_char_shopee1:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_shopee1_fig():
                 return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_shopee(), 'content', bins=100)
                 
@@ -875,7 +875,7 @@ def analysis():
             
         with col_freq_of_char_shopee2:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_shopee2_fig():
                 return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_shopee(), 'content')
                 
@@ -884,7 +884,7 @@ def analysis():
             
             
         with col_freq_of_char_shopee3:
-            @st.cache_data
+            @st.cache_data(persist=True)
             def plt_freq_meanlength_word_shopee():
                 return text_analyzer_project.freq_meanlength_word(data_grafik_shopee(), col='content')
             
@@ -897,7 +897,7 @@ def analysis():
         
         with col_freq_of_char_lazada1:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_lazada1_fig():
                 return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_lazada(), 'content', bins=100)
             
@@ -907,7 +907,7 @@ def analysis():
             
         with col_freq_of_char_lazada2:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_lazada2_fig():
                 return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_lazada(), 'content')
             
@@ -916,7 +916,7 @@ def analysis():
             
             
         with col_freq_of_char_lazada3:
-            @st.cache_data
+            @st.cache_data(persist=True)
             def plt_freq_meanlength_word_lazada():
                 return text_analyzer_project.freq_meanlength_word(data_grafik_lazada(), col='content')
             
@@ -928,7 +928,7 @@ def analysis():
         
         with col_freq_of_char_tokped1:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_tokped1_fig():
                 return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_tokped(), 'content', bins=100)
             
@@ -938,7 +938,7 @@ def analysis():
             
         with col_freq_of_char_tokped2:
             # Panggil fungsi untuk menghasilkan plot
-            @st.cache_data
+            @st.cache_data(persist=True)
             def col_freq_of_char_tokped2_fig():
                 return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_tokped(), 'content')
             
@@ -947,7 +947,7 @@ def analysis():
             
             
         with col_freq_of_char_tokped3:
-            @st.cache_data
+            @st.cache_data(persist=True)
             def plt_freq_meanlength_word_tokped():
                 return text_analyzer_project.freq_meanlength_word(data_grafik_tokped(), col='content')
             
@@ -999,7 +999,7 @@ def analysis():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data
+                @st.cache_data(persist=True)
                 def generate_wordcloud_shopee(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -1039,7 +1039,7 @@ def analysis():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data
+                @st.cache_data(persist=True)
                 def generate_wordcloud_lazada(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -1078,7 +1078,7 @@ def analysis():
             with st.container(height=400, border=True):
                 st.write('Wordcloud N-gram (4 kata)')
                 
-                @st.cache_data
+                @st.cache_data(persist=True)
                 def generate_wordcloud_tokped(df):
                     return text_analyzer_project.generate_wordcloud(df, col='N-gram (4 kata)')
                 
@@ -1312,7 +1312,7 @@ def analysis():
 
                     ''')
         
-        # @st.cache_data
+        # @st.cache_data(persist=True)
         def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata (df, most_common):
             # Tampilkan DataFrame dengan pengaturan tampilan khusus
             result_combine_top_4gram = text_analyzer_project.combine_top_ngram(data_grafik_shopee(), col='content', n=4, most_common=most_common)
@@ -1372,7 +1372,7 @@ def analysis():
                     most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
                     ''')
         
-        # @st.cache_data
+        # @st.cache_data(persist=True)
         def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata (df, most_common):
             # Tampilkan DataFrame dengan pengaturan tampilan khusus
             result_combine_top_4gram = text_analyzer_project.combine_top_ngram(data_grafik_lazada(), col='content', n=4, most_common=most_common)
@@ -1432,7 +1432,7 @@ def analysis():
                     most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
                     ''')
         
-        # @st.cache_data
+        # @st.cache_data(persist=True)
         def Network_Analisis_Seluruh_Data_N_gram_4_kata_menjadi_2_kata(df, most_common):
             # Tampilkan DataFrame dengan pengaturan tampilan khusus
             result_combine_top_4gram = text_analyzer_project.combine_top_ngram(data_grafik_tokped(), col='content', n=4, most_common=most_common)
