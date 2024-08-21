@@ -174,6 +174,7 @@ def aplikasi():
         text = tp.remove_emoji(text)
         text = tp.text_cleaning(text)
         text = tp.slang_transform(text)
+        text = tp.stemming(text)
         text = tp.remove_stopwords(text)
 
         return text

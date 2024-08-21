@@ -22,11 +22,12 @@ import streamlit as st
 def download_nltk_resources():
     nltk.download('punkt')
     nltk.download('stopwords')
+    
+# Panggil fungsi untuk mengunduh resource yang diperlukan
+download_nltk_resources()
 
 class TextProcessing:
     def __init__(self) -> None:
-        # Panggil fungsi untuk mengunduh resource yang diperlukan
-        download_nltk_resources()
         self.stopword_en = stopwords.words('english')
         self.stopword_id = stopwords.words('indonesian')
         
