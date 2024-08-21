@@ -18,11 +18,17 @@ import pandas as pd
 from unidecode import unidecode
 import streamlit as st
 
+@st.cache_data(persist=True)
+def download_nltk_resources():
+    nltk.download('punkt')
+    nltk.download('stopwords')
+
 class TextProcessing:
     def __init__(self) -> None:
-        pass
-        # self.stopword_en = stopwords.words('english')
-        # self.stopword_id = stopwords.words('indonesian')
+        # Panggil fungsi untuk mengunduh resource yang diperlukan
+        download_nltk_resources()
+        self.stopword_en = stopwords.words('english')
+        self.stopword_id = stopwords.words('indonesian')
         
     
     def remove_unicode_styles(_self, text: str, *args) -> str:
