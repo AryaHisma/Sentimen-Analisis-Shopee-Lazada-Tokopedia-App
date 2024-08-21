@@ -4,7 +4,6 @@ from StreamlitDashboard.dashboard import dashboard
 from StreamlitDashboard.analysis import analysis
 from StreamlitDashboard.paragraf_analisis_app import aplikasi
 from StreamlitDashboard.about import about
-from memory_profiler import profile
 
 @st.cache_data
 def load_image(image_path):
@@ -31,7 +30,7 @@ def setup_sidebar():
     if st.sidebar.button("About Me"):
         st.session_state.page = "About Me"
 
-@profile
+
 def run_app():
     st.set_page_config(
         page_title="Sentimen Analisis Marketplace Online",

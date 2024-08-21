@@ -11,10 +11,9 @@ from TextPreProcessing import text_analyzer_project
 
 import networkx as nx
 import matplotlib.pyplot as plt
-from memory_profiler import profile
 
 
-@profile
+
 def dashboard():
     with st.container(height=215):
         @st.cache_data

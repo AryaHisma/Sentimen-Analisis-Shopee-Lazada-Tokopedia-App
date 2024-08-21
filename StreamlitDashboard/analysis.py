@@ -865,22 +865,29 @@ def analysis():
         
         with col_freq_of_char_shopee1:
             # Panggil fungsi untuk menghasilkan plot
-                fig = text_analyzer_project.plot_letter_frequency_distribution(data_grafik_shopee(), 'content', bins=100)
+            @st.cache_data
+            def col_freq_of_char_shopee1_fig():
+                return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_shopee(), 'content', bins=100)
                 
-                # Tampilkan plot di Streamlit
-                st.plotly_chart(fig)
+            # Tampilkan plot di Streamlit
+            st.plotly_chart(col_freq_of_char_shopee1_fig())
             
             
         with col_freq_of_char_shopee2:
             # Panggil fungsi untuk menghasilkan plot
-                fig = text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_shopee(), 'content')
+            @st.cache_data
+            def col_freq_of_char_shopee2_fig():
+                return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_shopee(), 'content')
                 
-                # Tampilkan plot di Streamlit
-                st.plotly_chart(fig)
+            # Tampilkan plot di Streamlit
+            st.plotly_chart(col_freq_of_char_shopee2_fig())
             
             
         with col_freq_of_char_shopee3:
-            plt_freq_meanlength_word_shopee = text_analyzer_project.freq_meanlength_word(data_grafik_shopee(), col='content')
+            @st.cache_data
+            def plt_freq_meanlength_word_shopee():
+                return text_analyzer_project.freq_meanlength_word(data_grafik_shopee(), col='content')
+            
             st.plotly_chart(plt_freq_meanlength_word_shopee)
             
     
@@ -890,23 +897,30 @@ def analysis():
         
         with col_freq_of_char_lazada1:
             # Panggil fungsi untuk menghasilkan plot
-            fig = text_analyzer_project.plot_letter_frequency_distribution(data_grafik_lazada(), 'content', bins=100)
+            @st.cache_data
+            def col_freq_of_char_lazada1_fig():
+                return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_lazada(), 'content', bins=100)
             
             # Tampilkan plot di Streamlit
-            st.plotly_chart(fig)
+            st.plotly_chart(col_freq_of_char_lazada1_fig())
             
             
         with col_freq_of_char_lazada2:
             # Panggil fungsi untuk menghasilkan plot
-            fig = text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_lazada(), 'content')
+            @st.cache_data
+            def col_freq_of_char_lazada2_fig():
+                return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_lazada(), 'content')
             
             # Tampilkan plot di Streamlit
-            st.plotly_chart(fig)
+            st.plotly_chart(col_freq_of_char_lazada2_fig())
             
             
         with col_freq_of_char_lazada3:
-            plt_freq_meanlength_word_lazada = text_analyzer_project.freq_meanlength_word(data_grafik_lazada(), col='content')
-            st.plotly_chart(plt_freq_meanlength_word_lazada)
+            @st.cache_data
+            def plt_freq_meanlength_word_lazada():
+                return text_analyzer_project.freq_meanlength_word(data_grafik_lazada(), col='content')
+            
+            st.plotly_chart(plt_freq_meanlength_word_lazada())
     
     
     with tab_distribusi_tokped:
@@ -914,23 +928,30 @@ def analysis():
         
         with col_freq_of_char_tokped1:
             # Panggil fungsi untuk menghasilkan plot
-            fig = text_analyzer_project.plot_letter_frequency_distribution(data_grafik_tokped(), 'content', bins=100)
+            @st.cache_data
+            def col_freq_of_char_tokped1_fig():
+                return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_tokped(), 'content', bins=100)
             
             # Tampilkan plot di Streamlit
-            st.plotly_chart(fig)
+            st.plotly_chart(col_freq_of_char_tokped1_fig())
             
             
         with col_freq_of_char_tokped2:
             # Panggil fungsi untuk menghasilkan plot
-            fig = text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_tokped(), 'content')
+            @st.cache_data
+            def col_freq_of_char_tokped2_fig():
+                return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_tokped(), 'content')
             
             # Tampilkan plot di Streamlit
-            st.plotly_chart(fig)
+            st.plotly_chart(col_freq_of_char_tokped2_fig())
             
             
         with col_freq_of_char_tokped3:
-            plt_freq_meanlength_word_tokped = text_analyzer_project.freq_meanlength_word(data_grafik_tokped(), col='content')
-            st.plotly_chart(plt_freq_meanlength_word_tokped)
+            @st.cache_data
+            def plt_freq_meanlength_word_tokped():
+                return text_analyzer_project.freq_meanlength_word(data_grafik_tokped(), col='content')
+            
+            st.plotly_chart(plt_freq_meanlength_word_tokped())
     
     
     # SubHeader N-gram & Wordcloud

@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 
 
 
+
 def aplikasi():
     st.title('Paragraf Analisis App')
     
