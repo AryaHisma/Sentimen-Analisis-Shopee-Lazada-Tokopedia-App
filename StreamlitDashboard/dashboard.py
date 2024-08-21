@@ -7,7 +7,6 @@ import shutil
 import pandas as pd
 
 
-from TextPreProcessing.text_processing_project import TextProcessing
 from TextPreProcessing import text_analyzer_project
 
 import networkx as nx
