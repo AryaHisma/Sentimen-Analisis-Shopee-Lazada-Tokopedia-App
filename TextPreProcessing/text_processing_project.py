@@ -20,8 +20,9 @@ import streamlit as st
 
 class TextProcessing:
     def __init__(self) -> None:
-        self.stopword_en = stopwords.words('english')
-        self.stopword_id = stopwords.words('indonesian')
+        pass
+        # self.stopword_en = stopwords.words('english')
+        # self.stopword_id = stopwords.words('indonesian')
         
     
     def remove_unicode_styles(_self, text: str, *args) -> str:
