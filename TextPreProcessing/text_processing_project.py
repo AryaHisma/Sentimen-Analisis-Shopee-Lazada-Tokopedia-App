@@ -22,29 +22,29 @@ class TextProcessing:
         self.stopword_en = stopwords.words('english')
         self.stopword_id = stopwords.words('indonesian')
         
-    # @st.cache_data
+    
     def remove_unicode_styles(_self, text: str, *args) -> str:
         return unidecode(text)     
     
-    # @st.cache_data    
+    
     def lowercase(_self, data:str):
         data = data.lower()
         return data
     
-    # @st.cache_data
+    
     def remove_emoji(self, text: str) -> str:
         # Menggunakan emoji.replace_emoji jika tersedia
         # atau gunakan emoji.demojize jika replace_emoji tidak ada
         return emoji.replace_emoji(text, replace=' ')
     
-    # @st.cache_data
+    
     def remove_emoji_text(self, text: str) -> str:
         # Konversi emoji menjadi deskripsi teks
         text_with_descriptions = emoji.demojize(text)
         # Hapus deskripsi emoji (dalam format :name_of_emoji:)
         return emoji.replace_emoji(text_with_descriptions, replace=' ')
     
-    # @st.cache_data   
+       
     def text_cleaning(self, data: str) -> str:
         # number
         data = re.sub(r'\d+', " ", data)
@@ -90,7 +90,7 @@ class TextProcessing:
 
         return data
     
-    # @st.cache_data
+    
     def token_slang(self, data:str, lib="standar"):
         if lib == "standar":
             result = word_tokenize(data)
@@ -99,7 +99,7 @@ class TextProcessing:
             result = token_.tokenize(data)
         return result
 
-    # @st.cache_data
+    
     def remove_stopwords(self, text, stopword_path=None):
         # Dapatkan direktori saat ini dari file yang sedang dieksekusi
         current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -158,19 +158,19 @@ class TextProcessing:
     #     st = PorterStemmer()
     #     return st.stem(data)
     
-    # @st.cache_data
+    
     def stemming(self, data:str):
         st = StemmerFactory()
         stem = st.create_stemmer()
         return stem.stem(data)    
     
-    # @st.cache_data
+    
     def lemmatize(self, data:str):
         lemmatizer = Lemmatizer()
         result = lemmatizer.lemmatize(data)
         return data
     
-    # @st.cache_data
+    
     def slang_transform(self, data: str):
         current_dir = os.path.dirname(os.path.realpath(__file__))
         slang_path = os.path.join(current_dir, "../assets", "slang_sorted.json")

@@ -24,7 +24,7 @@ def setup_sidebar():
     elif st.sidebar.button("Paragraf Analisis App"):
         st.session_state.page = "Paragraf Analisis App"
     
-    st.sidebar.title("Profil")
+    st.sidebar.title("My Profil")
     
     if st.sidebar.button("About Me"):
         st.session_state.page = "About Me"
