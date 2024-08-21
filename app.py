@@ -14,14 +14,16 @@ def setup_sidebar():
     st.sidebar.image(load_image('assets/gambar/icon_sentiment.png'))
     st.sidebar.title("Project")
 
+    # Inisialisasi state
     if "page" not in st.session_state:
         st.session_state.page = "Dashboard"
 
+    # Button Navigation
     if st.sidebar.button("Dashboard"):
         st.session_state.page = "Dashboard"
-    elif st.sidebar.button("Proses Analisis"):
+    if st.sidebar.button("Proses Analisis"):
         st.session_state.page = "Proses Analisis"
-    elif st.sidebar.button("Paragraf Analisis App"):
+    if st.sidebar.button("Paragraf Analisis App"):
         st.session_state.page = "Paragraf Analisis App"
     
     st.sidebar.title("My Profil")
