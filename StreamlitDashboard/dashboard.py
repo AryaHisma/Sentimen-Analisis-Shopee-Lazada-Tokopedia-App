@@ -36,15 +36,11 @@ def dashboard():
     col_shopee, col_lazada, col_tokped = st.columns(3)
     
     # Load data
-    df_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.pkl")
-    df_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_stopword_lazada.pkl")
-    df_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_stopword_tokped.pkl")
+    df_clean_shopee = pd.read_pickle("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.pkl")
+    df_clean_lazada = pd.read_pickle("./assets/dataset/data_preprocess_lazada/df_stopword_lazada.pkl")
+    df_clean_tokped = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_stopword_tokped.pkl")
 
-    # Copy dataframe
-    df_clean_shopee = df_shopee.copy()
-    df_clean_lazada = df_lazada.copy()
-    df_clean_tokped = df_tokped.copy()
-
+    
     # Konversi kolom 'at' menjadi datetime
     df_clean_shopee['at'] = pd.to_datetime(df_clean_shopee['at'], errors='coerce')
     df_clean_lazada['at'] = pd.to_datetime(df_clean_lazada['at'], errors='coerce')
@@ -52,16 +48,10 @@ def dashboard():
     
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_clean_shopee['year'] = df_clean_shopee['at'].dt.year
-    df_clean_shopee['month'] = df_clean_shopee['at'].dt.month_name()
-    df_clean_shopee['day'] = df_clean_shopee['at'].dt.day
 
     df_clean_lazada['year'] = df_clean_lazada['at'].dt.year
-    df_clean_lazada['month'] = df_clean_lazada['at'].dt.month_name()
-    df_clean_lazada['day'] = df_clean_lazada['at'].dt.day
 
     df_clean_tokped['year'] = df_clean_tokped['at'].dt.year
-    df_clean_tokped['month'] = df_clean_tokped['at'].dt.month_name()
-    df_clean_tokped['day'] = df_clean_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_clean_shopee = df_clean_shopee.where(pd.notnull(df_clean_shopee), None)
@@ -69,9 +59,9 @@ def dashboard():
     df_clean_tokped = df_clean_tokped.where(pd.notnull(df_clean_tokped), None)
 
     # Konversi kolom datetime ke string
-    df_clean_shopee['at'] = df_clean_shopee['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_clean_lazada['at'] = df_clean_lazada['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_clean_tokped['at'] = df_clean_tokped['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    # df_clean_shopee['at'] = df_clean_shopee['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    # df_clean_lazada['at'] = df_clean_lazada['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    # df_clean_tokped['at'] = df_clean_tokped['at'].dt.strftime('%Y-%m-%d %H:%M:%S')
     
     # Subset kolom di dataset
     df_clean_shopee = df_clean_shopee[['content', 'at', 'year']]
