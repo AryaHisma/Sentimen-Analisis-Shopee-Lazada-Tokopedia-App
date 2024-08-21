@@ -12,16 +12,27 @@ from TextPreProcessing import text_analyzer_project
 
 import networkx as nx
 import matplotlib.pyplot as plt
+from memory_profiler import profile
 
 
-
+@profile
 def dashboard():
     with st.container(height=215):
-        # IMAGE
-        image = Image.open("./assets/gambar/title_dashboard.png")
-        st.image(image, use_column_width=True, channels="RGB")
+        @st.cache_data
+        def display_image(image_path, use_column_width=True, channels="RGB"):
+            """
+            Menampilkan gambar di Streamlit.
+            
+            Parameters:
+            - image_path (str): Path ke file gambar.
+            - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+            - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
+            """
+            image = Image.open(image_path)
+            st.image(image, use_column_width=use_column_width, channels=channels)
+
+        display_image("./assets/gambar/title_dashboard.png", use_column_width=True, channels="RGB")
     
-      
     # Load dataset
     col_shopee, col_lazada, col_tokped = st.columns(3)
     
