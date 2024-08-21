@@ -9,7 +9,6 @@ import pandas as pd
 import numpy as np
 import warnings
 warnings.filterwarnings('ignore')
-import streamlit_shadcn_ui as ui
 from PIL import Image
 
 from TextPreProcessing.text_processing_project import TextProcessing
