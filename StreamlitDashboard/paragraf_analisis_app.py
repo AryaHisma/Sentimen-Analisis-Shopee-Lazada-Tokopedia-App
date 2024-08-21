@@ -32,11 +32,18 @@ def aplikasi():
             st.warning("Silakan masukkan teks untuk diproses.")
         else:
             
+            # Fungsi untuk memeriksa dan mengunduh resource NLTK
             @st.cache_data(persist=True)
             def download_nltk_resources():
-                nltk.download('punkt')
-                nltk.download('stopwords')
-                
+                try:
+                    nltk.data.find('tokenizers/punkt')
+                except LookupError:
+                    nltk.download('punkt')
+                try:
+                    nltk.data.find('stopwords')
+                except LookupError:
+                    nltk.download('stopwords')
+
             # Panggil fungsi untuk mengunduh resource yang diperlukan
             download_nltk_resources()
             
