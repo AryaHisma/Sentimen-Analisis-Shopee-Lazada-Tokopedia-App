@@ -6,16 +6,12 @@ nltk
 networkx
 matplotlib
 plotly
-streamlit_shadcn_ui
 emoji
-PySastrawi
 unidecode
 wordcloud
 seaborn
-altair
 scipy
 scikit-learn
 typing-extensions
 regex
-nlp-id
 memory_profiler

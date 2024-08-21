@@ -12,7 +12,6 @@ import networkx as nx
 import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.feature_extraction.text import CountVectorizer
-import altair as alt
 import scipy.stats as stats
 import plotly.graph_objects as go
 from scipy.stats import gaussian_kde
