@@ -6,8 +6,6 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import PorterStemmer
 import nltk
 
-# Unduh stopwords jika belum ada
-nltk.download('stopwords')
 
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
