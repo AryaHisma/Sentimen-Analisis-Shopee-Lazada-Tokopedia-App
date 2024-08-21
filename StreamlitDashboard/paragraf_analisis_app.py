@@ -33,7 +33,7 @@ def aplikasi():
         else:
             
             # Fungsi untuk memeriksa dan mengunduh resource NLTK
-            @st.cache_data(persist=True)
+            # @st.cache_data(persist=True)
             def download_nltk_resources():
                 try:
                     nltk.data.find('tokenizers/punkt')
@@ -272,8 +272,7 @@ def aplikasi():
                             dari node pusat. Ini mengacu pada jumlah lapisan atau tingkat kedekatan yang ingin Anda pertimbangkan dalam analisis.
                             ''')
                 
-                st.info('''**"Pilih parameter center node berdasarkan kata yang ada di Most influencial, Most importance 
-                            connection dan Best connectorDepth**"" (Center node dikosongkan, silahkan input center node)''')
+                
 
                 # Cached function for network analysis with center node and depth
                 # @st.cache_data
@@ -316,7 +315,8 @@ def aplikasi():
 
                         return fig
                     else:
-                        st.error(f"Node '{center_node}' not found in the graph.")
+                        st.info('''**"Pilih parameter center node berdasarkan kata yang ada di Most influencial, Most importance 
+                            connection dan Best connectorDepth**"" (Center node dikosongkan, silahkan input center node)''')
                         return None
 
                 col_mostcommon11, col_mostcommon21, col_mostcommon31 = st.columns(3)
