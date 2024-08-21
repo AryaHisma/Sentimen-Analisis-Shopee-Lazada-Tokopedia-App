@@ -60,9 +60,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_raw_shopee = load_data_raw_shopee().copy()
-    df_raw_lazada = load_data_raw_lazada().copy()
-    df_raw_tokped = load_data_raw_tokped().copy()
+    df_raw_shopee = load_data_raw_shopee()
+    df_raw_lazada = load_data_raw_lazada()
+    df_raw_tokped = load_data_raw_tokped()
 
     # Subset dataset
     df_raw_shopee = df_raw_shopee[['content', 'at']]
@@ -76,16 +76,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_raw_shopee['year'] = df_raw_shopee['at'].dt.year
-    # df_raw_shopee['month'] = df_raw_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_raw_lazada['year'] = df_raw_lazada['at'].dt.year
-    # df_raw_lazada['month'] = df_raw_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_raw_tokped['year'] = df_raw_tokped['at'].dt.year
-    # df_raw_tokped['month'] = df_raw_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_raw_shopee = df_raw_shopee.where(pd.notnull(df_raw_shopee), None)
@@ -161,9 +155,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_lowercase_shopee = load_data_lowercase_shopee().copy()
-    df_lowercase_lazada = load_data_lowercase_lazada().copy()
-    df_lowercase_tokped = load_data_lowercase_tokped().copy()
+    df_lowercase_shopee = load_data_lowercase_shopee()
+    df_lowercase_lazada = load_data_lowercase_lazada()
+    df_lowercase_tokped = load_data_lowercase_tokped()
 
     # Subset dataset
     df_lowercase_shopee = df_lowercase_shopee[['content', 'at']]
@@ -179,16 +173,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_lowercase_shopee['year'] = df_lowercase_shopee['at'].dt.year
-    # df_lowercase_shopee['month'] = df_lowercase_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_lowercase_lazada['year'] = df_lowercase_lazada['at'].dt.year
-    # df_lowercase_lazada['month'] = df_lowercase_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_lowercase_tokped['year'] = df_lowercase_tokped['at'].dt.year
-    # df_lowercase_tokped['month'] = df_lowercase_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_lowercase_shopee = df_lowercase_shopee.where(pd.notnull(df_raw_shopee), None)
@@ -315,9 +303,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_removeemoji_shopee = load_data_removeemoji_shopee().copy()
-    df_removeemoji_lazada = load_data_removeemoji_lazada().copy()
-    df_removeemoji_tokped = load_data_removeemoji_tokped().copy()
+    df_removeemoji_shopee = load_data_removeemoji_shopee()
+    df_removeemoji_lazada = load_data_removeemoji_lazada()
+    df_removeemoji_tokped = load_data_removeemoji_tokped()
 
     # Subset dataset
     df_removeemoji_shopee = df_removeemoji_shopee[['content', 'at']]
@@ -333,16 +321,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_removeemoji_shopee['year'] = df_removeemoji_shopee['at'].dt.year
-    # df_removeemoji_shopee['month'] = df_removeemoji_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_removeemoji_lazada['year'] = df_removeemoji_lazada['at'].dt.year
-    # df_removeemoji_lazada['month'] = df_removeemoji_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_removeemoji_tokped['year'] = df_removeemoji_tokped['at'].dt.year
-    # df_removeemoji_tokped['month'] = df_removeemoji_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_removeemoji_shopee = df_removeemoji_shopee.where(pd.notnull(df_raw_shopee), None)
@@ -473,9 +455,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_textcleaning_shopee = load_data_textcleaning_shopee().copy()
-    df_textcleaning_lazada = load_data_textcleaning_lazada().copy()
-    df_textcleaning_tokped = load_data_textcleaning_tokped().copy()
+    df_textcleaning_shopee = load_data_textcleaning_shopee()
+    df_textcleaning_lazada = load_data_textcleaning_lazada()
+    df_textcleaning_tokped = load_data_textcleaning_tokped()
 
     # Subset dataset
     df_textcleaning_shopee = df_textcleaning_shopee[['content', 'at']]
@@ -491,16 +473,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_textcleaning_shopee['year'] = df_textcleaning_shopee['at'].dt.year
-    # df_textcleaning_shopee['month'] = df_textcleaning_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_textcleaning_lazada['year'] = df_textcleaning_lazada['at'].dt.year
-    # df_textcleaning_lazada['month'] = df_textcleaning_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_textcleaning_tokped['year'] = df_textcleaning_tokped['at'].dt.year
-    # df_textcleaning_tokped['month'] = df_textcleaning_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_textcleaning_shopee = df_textcleaning_shopee.where(pd.notnull(df_raw_shopee), None)
@@ -630,9 +606,9 @@ def analysis():
         return df_tokped1
 
     # Copy dataframe
-    df_slang_shopee1 = load_data_slang_shopee().copy()
-    df_slang_lazada1 = load_data_slang_lazada().copy()
-    df_slang_tokped1 = load_data_slang_tokped().copy()
+    df_slang_shopee1 = load_data_slang_shopee()
+    df_slang_lazada1 = load_data_slang_lazada()
+    df_slang_tokped1 = load_data_slang_tokped()
 
     # Subset dataset
     df_slang_shopee1 = df_slang_shopee1[['content', 'at']]
@@ -648,16 +624,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_slang_shopee1['year'] = df_slang_shopee1['at'].dt.year
-    # df_slang_shopee1['month'] = df_slang_shopee1['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_slang_lazada1['year'] = df_slang_lazada1['at'].dt.year
-    # df_slang_lazada1['month'] = df_slang_lazada1['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_slang_tokped1['year'] = df_slang_tokped1['at'].dt.year
-    # df_slang_tokped1['month'] = df_slang_tokped1['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_slang_shopee1 = df_slang_shopee1.where(pd.notnull(df_raw_shopee), None)
@@ -793,9 +763,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_stem_shopee = load_data_stem_shopee().copy()
-    df_stem_lazada = load_data_stem_lazada().copy()
-    df_stem_tokped = load_data_stem_tokped().copy()
+    df_stem_shopee = load_data_stem_shopee()
+    df_stem_lazada = load_data_stem_lazada()
+    df_stem_tokped = load_data_stem_tokped()
 
     # Subset dataset
     df_stem_shopee = df_stem_shopee[['content', 'at']]
@@ -811,17 +781,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_stem_shopee['year'] = df_stem_shopee['at'].dt.year
-    # df_stem_shopee['month'] = df_stem_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_stem_lazada['year'] = df_stem_lazada['at'].dt.year
-    # df_stem_lazada['month'] = df_stem_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_stem_tokped['year'] = df_stem_tokped['at'].dt.year
-    # df_stem_tokped['month'] = df_stem_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
-
     # Mengganti NaN dengan None
     df_stem_shopee = df_stem_shopee.where(pd.notnull(df_raw_shopee), None)
     df_stem_lazada = df_stem_lazada.where(pd.notnull(df_raw_lazada), None)
@@ -950,9 +913,9 @@ def analysis():
         return df_tokped
 
     # Copy dataframe
-    df_stopword_shopee = load_data_stopword_shopee().copy()
-    df_stopword_lazada = load_data_stopword_lazada().copy()
-    df_stopword_tokped = load_data_stopword_tokped().copy()
+    df_stopword_shopee = load_data_stopword_shopee()
+    df_stopword_lazada = load_data_stopword_lazada()
+    df_stopword_tokped = load_data_stopword_tokped()
 
     # Subset dataset
     df_stopword_shopee = df_stopword_shopee[['content', 'at']]
@@ -968,16 +931,10 @@ def analysis():
 
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_stopword_shopee['year'] = df_stopword_shopee['at'].dt.year
-    # df_stopword_shopee['month'] = df_stopword_shopee['at'].dt.month_name()
-    # df_raw_shopee['day'] = df_raw_shopee['at'].dt.day
 
     df_stopword_lazada['year'] = df_stopword_lazada['at'].dt.year
-    # df_stopword_lazada['month'] = df_stopword_lazada['at'].dt.month_name()
-    # df_raw_lazada['day'] = df_raw_lazada['at'].dt.day
 
     df_stopword_tokped['year'] = df_stopword_tokped['at'].dt.year
-    # df_stopword_tokped['month'] = df_stopword_tokped['at'].dt.month_name()
-    # df_raw_tokped['day'] = df_raw_tokped['at'].dt.day
 
     # Mengganti NaN dengan None
     df_stopword_shopee = df_stopword_shopee.where(pd.notnull(df_raw_shopee), None)
@@ -1095,9 +1052,9 @@ def analysis():
     df_tokped1 = pd.read_pickle("./assets/dataset/data_preprocess_tokped/df_stopword_tokped.pkl")
 
     # Copy dataframe
-    df_clean_shopee1 = df_shopee1.copy()
-    df_clean_lazada1 = df_lazada1.copy()
-    df_clean_tokped1 = df_tokped1.copy()
+    df_clean_shopee1 = df_shopee1
+    df_clean_lazada1 = df_lazada1
+    df_clean_tokped1 = df_tokped1
 
     # Konversi kolom 'at' menjadi datetime
     df_clean_shopee1['at'] = pd.to_datetime(df_clean_shopee1['at'], errors='coerce')
@@ -1106,16 +1063,10 @@ def analysis():
     
     # Menambah kolom untuk tahun, bulan, dan tanggal
     df_clean_shopee1['year'] = df_clean_shopee1['at'].dt.year
-    # df_clean_shopee1['month'] = df_clean_shopee1['at'].dt.month_name()
-    # df_clean_shopee1['day'] = df_clean_shopee1['at'].dt.day
 
     df_clean_lazada1['year'] = df_clean_lazada1['at'].dt.year
-    # df_clean_lazada1['month'] = df_clean_lazada1['at'].dt.month_name()
-    # df_clean_lazada1['day'] = df_clean_lazada1['at'].dt.day
 
     df_clean_tokped1['year'] = df_clean_tokped1['at'].dt.year
-    # df_clean_tokped1['month'] = df_clean_tokped1['at'].dt.month_name()
-    # df_clean_tokped1['day'] = df_clean_tokped1['at'].dt.day
 
     # Mengganti NaN dengan None
     df_clean_shopee1 = df_clean_shopee1.where(pd.notnull(df_clean_shopee1), None)
