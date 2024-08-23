@@ -16,6 +16,22 @@ import matplotlib.pyplot as plt
 import nltk
 
 def aplikasi():
+    # Fungsi untuk memeriksa dan mengunduh resource NLTK
+    # @st.cache_data(persist=True)
+    def download_nltk_resources():
+        try:
+            nltk.data.find('tokenizers/punkt')
+        except LookupError:
+            nltk.download('punkt')
+        try:
+            nltk.data.find('corpora/stopwords')
+        except LookupError:
+            nltk.download('stopwords')
+
+    # Panggil fungsi untuk mengunduh resource yang diperlukan
+    download_nltk_resources()
+            
+    
     st.title('Paragraf Analisis App')
     
     st.markdown(''' 
@@ -32,21 +48,7 @@ def aplikasi():
             st.warning("Silakan masukkan teks untuk diproses.")
         else:
             
-            # Fungsi untuk memeriksa dan mengunduh resource NLTK
-            # @st.cache_data(persist=True)
-            def download_nltk_resources():
-                try:
-                    nltk.data.find('tokenizers/punkt')
-                except LookupError:
-                    nltk.download('punkt')
-                try:
-                    nltk.data.find('corpora/stopwords')
-                except LookupError:
-                    nltk.download('stopwords')
-
-            # Panggil fungsi untuk mengunduh resource yang diperlukan
-            download_nltk_resources()
-            
+          
                       
             # Text preprocessing
             tp = TextProcessing()
