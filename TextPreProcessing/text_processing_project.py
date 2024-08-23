@@ -25,7 +25,7 @@ def download_nltk_resources():
         os.makedirs(nltk_data_path)
 
     # Mengunduh resource dan menentukan direktori target
-    nltk.download('punkt', download_dir=nltk_data_path)
+    nltk.download('punkt_tab', download_dir=nltk_data_path)
     nltk.download('stopwords', download_dir=nltk_data_path)
     
 # Panggil fungsi untuk mengunduh resource yang diperlukan
