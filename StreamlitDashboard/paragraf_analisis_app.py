@@ -18,22 +18,6 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 def aplikasi():
-    # Fungsi untuk memeriksa dan mengunduh resource NLTK
-    # @st.cache_data(persist=True)
-    def download_nltk_resources():
-        # Menentukan path di mana resource akan diunduh
-        nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
-        if not os.path.exists(nltk_data_path):
-            os.makedirs(nltk_data_path)
-
-        # Mengunduh resource dan menentukan direktori target
-        nltk.download('punkt', download_dir=nltk_data_path)
-        nltk.download('stopwords', download_dir=nltk_data_path)
-        
-    # Panggil fungsi untuk mengunduh resource yang diperlukan
-    download_nltk_resources()
-    
-    
     st.title('Paragraf Analisis App')
     
     st.markdown(''' 
