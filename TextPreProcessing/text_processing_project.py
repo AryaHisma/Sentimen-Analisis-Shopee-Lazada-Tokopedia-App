@@ -6,7 +6,6 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import PorterStemmer
 import nltk
 
-
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 from typing import List
@@ -28,6 +27,10 @@ download_nltk_resources()
 
 class TextProcessing:
     def __init__(self) -> None:
+        # Panggil fungsi download_nltk_resources untuk memastikan resource telah diunduh
+        download_nltk_resources()
+        
+        # Inisialisasi stopwords setelah memastikan resource telah tersedia
         self.stopword_en = stopwords.words('english')
         self.stopword_id = stopwords.words('indonesian')
         
