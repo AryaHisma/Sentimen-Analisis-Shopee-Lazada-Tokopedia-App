@@ -21,18 +21,17 @@ def aplikasi():
     # Fungsi untuk memeriksa dan mengunduh resource NLTK
     # @st.cache_data(persist=True)
     def download_nltk_resources():
-        try:
-            nltk.data.find('tokenizers/punkt')
-        except LookupError:
-            nltk.download('punkt')
-        try:
-            nltk.data.find('corpora/stopwords')
-        except LookupError:
-            nltk.download('stopwords')
+        # Menentukan path di mana resource akan diunduh
+        nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+        if not os.path.exists(nltk_data_path):
+            os.makedirs(nltk_data_path)
 
+        # Mengunduh resource dan menentukan direktori target
+        nltk.download('punkt', download_dir=nltk_data_path)
+        nltk.download('stopwords', download_dir=nltk_data_path)
+        
     # Panggil fungsi untuk mengunduh resource yang diperlukan
     download_nltk_resources()
-            
     
     
     st.title('Paragraf Analisis App')
