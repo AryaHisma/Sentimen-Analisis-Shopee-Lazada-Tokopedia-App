@@ -54,6 +54,7 @@ class TextProcessing:
         return emoji.replace_emoji(text_with_descriptions, replace=' ')
     
        
+    # @st.cache_data   
     def text_cleaning(self, data: str) -> str:
         # number
         data = re.sub(r'\d+', " ", data)
@@ -74,17 +75,26 @@ class TextProcessing:
         # tanda »
         data = re.sub(r'»', ' ', data)
         
+        # tanda ' 
+        data = re.sub(r'\' ', ' ', data)
+        
+        # tanda -
+        data = re.sub(r'-', ' ', data)
+        
+        # tanda --
+        data = re.sub(r'--', ' ', data)
+        
         # tanda ðŸ‘ŒðŸ
         data = re.sub(r'ðŸ‘ŒðŸ', ' ', data)
         
         # url
         url_pattern = re.compile(r'https?://\S+|www\.\S+')
-        data = url_pattern.sub(r'', data)
+        data = url_pattern.sub(r' ', data)
         
-        # # Anda bisa memasukkan semua karakter yang ingin digantikan dalam kurung siku
-        # pattern = r'[!@#$%^&*()_\-+=|\\{}\[\]:";\'/?<>.,~`]'
-        # # Mengganti tanda baca dengan spasi
-        # data = re.sub(pattern, ' ', data)
+        # Anda bisa memasukkan semua karakter yang ingin digantikan dalam kurung siku
+        pattern = r'[!@#$%^&*()_\-+=|\\{}\[\]:";\'/?<>.,~`]'
+        # Mengganti tanda baca dengan spasi
+        data = re.sub(pattern, ' ', data)
         
         # punctuation
         data = data.translate(str.maketrans(" ", " ", string.punctuation))

@@ -18,6 +18,7 @@ from scipy.stats import gaussian_kde
 import plotly.figure_factory as ff
 import streamlit as st
 import re
+import string
 
 # nltk.download('punkt')
 
@@ -904,6 +905,47 @@ def generate_wordcloud(df, col):
     # Mengembalikan objek figure
     return fig
 
+def generate_wordcloud_dashboard(df, col, max_font_size=50, relative_scaling=0.5):
+    """
+    Menampilkan WordCloud dari teks dalam kolom yang ditentukan.
+
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk WordCloud.
+    - max_font_size: Ukuran maksimal dari font yang akan digunakan dalam WordCloud.
+    - relative_scaling: Skala relatif untuk menentukan proporsionalitas ukuran kata.
+
+    Returns:
+    - fig: Matplotlib figure object untuk digunakan di Streamlit.
+    """
+    # Gabungkan semua teks menjadi satu string
+    text = ' '.join(df[col].astype(str))
+
+    # Hapus tanda baca termasuk tanda kutip tunggal
+    text = text.replace("'", "")
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    text = re.sub(r"['’‘]", "", text)  # Hapus semua variasi tanda kutip
+
+    # Inisialisasi WordCloud dengan parameter tambahan
+    wordcloud = WordCloud(
+        width=800,
+        height=550,
+        background_color='white',
+        max_font_size=max_font_size,  # Mengatur ukuran font maksimal
+        relative_scaling=relative_scaling  # Mengatur skala relatif untuk menjaga proporsionalitas
+    ).generate(text)
+
+    # Membuat objek figure dan axis
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # Tampilkan WordCloud
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    ax.set_title('WordCloud untuk Kolom {}'.format(col), fontsize=16)
+
+    # Mengembalikan objek figure
+    return fig
+
 def generate_wordcloud_text(text):
     """
     Menampilkan WordCloud dari teks yang diberikan.
@@ -949,6 +991,47 @@ def generate_wordcloud_text_app(text):
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
     ax.set_title('WordCloud', fontsize=16)
+
+    # Mengembalikan objek figure
+    return fig
+
+
+def generate_wordcloud_dataframe(df, col, max_font_size=50, relative_scaling=0.5):
+    """
+    Membuat WordCloud dari teks dalam kolom yang ditentukan.
+
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk WordCloud.
+    - max_font_size: Ukuran maksimal dari font yang akan digunakan dalam WordCloud.
+    - relative_scaling: Skala relatif untuk menentukan proporsionalitas ukuran kata.
+
+    Returns:
+    - fig: Matplotlib figure object untuk digunakan di Streamlit atau lainnya.
+    """
+    # Gabungkan semua teks menjadi satu string
+    text = ' '.join(df[col].dropna().astype(str))
+
+    # Konversi semua karakter ke bentuk ASCII dan hapus tanda baca yang tidak diinginkan
+    text = re.sub(r"[\'’‘]", "", text)  # Hapus semua variasi tanda kutip
+    text = text.translate(str.maketrans("", "", string.punctuation))  # Hapus tanda baca
+
+    # Inisialisasi WordCloud dengan parameter tambahan
+    wordcloud = WordCloud(
+        width=800,
+        height=550,
+        background_color='white',
+        max_font_size=max_font_size,  # Mengatur ukuran font maksimal
+        relative_scaling=relative_scaling  # Mengatur skala relatif untuk menjaga proporsionalitas
+    ).generate(text)
+
+    # Membuat objek figure dan axis
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # Tampilkan WordCloud
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    ax.set_title(f'WordCloud untuk Kolom {col}', fontsize=16)
 
     # Mengembalikan objek figure
     return fig
@@ -1168,7 +1251,7 @@ def top_ngram_text_most(text, n):
     
     return result
 
-def combine_top_ngram(df, col, n, most_common=10):
+def combine_top_ngram(df, col, n, most_common=100000):
     """
     Menghitung n-gram yang paling sering muncul dalam kolom yang ditentukan dan mengembalikannya sebagai DataFrame.
     

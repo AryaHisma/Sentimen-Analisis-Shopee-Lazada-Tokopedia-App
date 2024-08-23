@@ -15,6 +15,7 @@ from StreamlitDashboard.dashboard import dashboard
 from StreamlitDashboard.analysis import analysis
 from StreamlitDashboard.paragraf_analisis_app import aplikasi
 from StreamlitDashboard.about import about
+from StreamlitDashboard.eda import eda
 
 
 
@@ -22,7 +23,7 @@ def load_image(image_path):
     return Image.open(image_path)
 
 def setup_sidebar():
-    st.sidebar.image(load_image('assets/gambar/icon_sentiment.png'))
+    st.sidebar.image(load_image('assets/gambar/sidebar.png'))
     st.sidebar.title("Project")
 
     # Inisialisasi state
@@ -32,8 +33,10 @@ def setup_sidebar():
     # Button Navigation
     if st.sidebar.button("Dashboard"):
         st.session_state.page = "Dashboard"
-    if st.sidebar.button("Proses Analisis"):
-        st.session_state.page = "Proses Analisis"
+    if st.sidebar.button("Exploratory Data Analisis"):
+        st.session_state.page = "Exploratory Data Analisis"
+    if st.sidebar.button("Preprocessing Data"):
+        st.session_state.page = "Preprocessing Data"
     if st.sidebar.button("Paragraf Analisis App"):
         st.session_state.page = "Paragraf Analisis App"
     
@@ -48,7 +51,9 @@ def run_app():
 
     if st.session_state.page == "Dashboard":
         dashboard()
-    elif st.session_state.page == "Proses Analisis":
+    elif st.session_state.page == "Exploratory Data Analisis":
+        eda()
+    elif st.session_state.page == "Preprocessing Data":
         analysis()
     elif st.session_state.page == "Paragraf Analisis App":
         aplikasi()

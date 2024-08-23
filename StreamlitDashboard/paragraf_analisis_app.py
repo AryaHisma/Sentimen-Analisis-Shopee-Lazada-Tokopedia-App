@@ -107,7 +107,7 @@ def aplikasi():
             
             
             # Container for Most Influential, Most Important Connection, Best Connector
-            with st.container(height=500, border=True):   
+            with st.container(height=600, border=True):   
                 col_mosttext1, col_mosttext2, col_mosttext3 = st.columns(3)
                 
                 with col_mosttext1:
@@ -169,15 +169,15 @@ def aplikasi():
                 col_mostgraf1, col_mostgraf2, col_mostgraf3 = st.columns(3)
 
                 with col_mostgraf1:
-                    with st.container():
+                    with st.container(height=355, border=True):
                         display_centrality_results('Most Influential (Paling Berpengaruh) N-gram 2 kata', most_influential)
 
                 with col_mostgraf2:
-                    with st.container():
+                    with st.container(height=355, border=True):
                         display_centrality_results('Most Important Connection (Koneksi Paling Penting) N-gram 2 kata', most_important)
 
                 with col_mostgraf3:
-                    with st.container():
+                    with st.container(height=355, border=True):
                         display_centrality_results('Best Connector (Penghubung Terbaik) N-gram 2 kata', best_connector)
 
     # Text preprocessing
@@ -198,11 +198,11 @@ def aplikasi():
     cleaned_text = text_preprocessing(long_text)        
             
     # Container for network analysis
-    with st.container(height=1000, border=True):    
+    with st.container(height=1300, border=True):    
         col_network1, col_network2 = st.columns(2)
 
         with col_network1:
-            with st.container(height=950, border=True):
+            with st.container(height=1265, border=True):
                 st.write('Network Analysis of All Data N-gram 2 Words')
                 st.markdown('''
                             **Note:** 
@@ -232,10 +232,10 @@ def aplikasi():
                     node_color = [v for v in degree_centrality.values()]
 
                     # Plot
-                    fig, ax = plt.subplots(figsize=(16, 14.7))
+                    fig, ax = plt.subplots(figsize=(16, 22.7))
                     nx.draw_networkx_nodes(G, pos, node_size=node_size, node_color=node_color, cmap=plt.cm.Blues, alpha=0.7, ax=ax)
                     nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5, ax=ax)
-                    nx.draw_networkx_labels(G, pos, font_size=10, ax=ax)
+                    nx.draw_networkx_labels(G, pos, font_size=20, ax=ax)
 
                     # Add title and colorbar
                     plt.title('Network Analysis of Paragraf', fontsize=16)
@@ -248,7 +248,7 @@ def aplikasi():
                 
                 with col_mostcommon1:
                     # Input for most_common parameter in Streamlit
-                    most_common_input = st.number_input('Input Most Common', min_value=2, max_value=100, value=20, step=1, key='most_common_input_1')
+                    most_common_input = st.number_input('Input Most Common', min_value=2, max_value=100, value=5, step=1, key='most_common_input_1')
                     
                 with col_mostcommon2:
                     pass
@@ -260,7 +260,7 @@ def aplikasi():
                 st.pyplot(fig)
 
         with col_network2:
-            with st.container(height=950, border=True):
+            with st.container(height=1265, border=True):
                 st.write('Network Analysis of All Data N-gram 2 Words with Center Node')
                 st.markdown('''
                             **Note:**
@@ -304,10 +304,10 @@ def aplikasi():
                         node_size = [v * 1000 for v in degree_centrality.values()]
                         node_color = [v for v in degree_centrality.values()]
 
-                        fig, ax = plt.subplots(figsize=(16, 10))
+                        fig, ax = plt.subplots(figsize=(16, 21))
                         nx.draw_networkx_nodes(subgraph, pos, node_size=node_size, node_color=node_color, cmap=plt.cm.Blues, alpha=0.7, ax=ax)
                         nx.draw_networkx_edges(subgraph, pos, width=1.0, alpha=0.5, ax=ax)
-                        nx.draw_networkx_labels(subgraph, pos, font_size=10, ax=ax)
+                        nx.draw_networkx_labels(subgraph, pos, font_size=20, ax=ax)
 
                         plt.title('Network Analysis of Review with Center Node', fontsize=16)
                         cbar = plt.colorbar(plt.cm.ScalarMappable(cmap=plt.cm.Blues), ax=ax)
@@ -322,14 +322,14 @@ def aplikasi():
                 col_mostcommon11, col_mostcommon21, col_mostcommon31 = st.columns(3)
 
                 with col_mostcommon11:
-                    most_common_input2 = st.number_input('Input Most Common', min_value=2, max_value=100, value=20, step=1, key='most_common_input_3')
+                    most_common_input2 = st.number_input('Input Most Common', min_value=2, max_value=100, value=5, step=1, key='most_common_input_3')
 
                 with col_mostcommon21:
                     center_node = st.text_input("Enter center node parameter:", value='Contoh: Node_A', key='center_node_input_1')
 
 
                 with col_mostcommon31:
-                    depth = st.number_input('Input Depth', min_value=1, max_value=10, value=2, step=1, key='most_common_input_4')
+                    depth = st.number_input('Input Depth', min_value=1, max_value=10, value=1, step=1, key='most_common_input_4')
 
                 # Call the function and display the plot
                 fig = Network_Analysis_With_Center_Node(cleaned_text, most_common=most_common_input2, center_node=center_node, depth=depth)
@@ -338,32 +338,7 @@ def aplikasi():
                     st.pyplot(fig)
                 
     
-            
-    # with st.container(height=850, border=True):
-    #     col_distribusi1, col_distribusi2, col_distribusi3 = st.columns(3)
-        
-    #     with col_distribusi1[0]:
-    #         with st.container(height=480, border=True):
-    #             # Panggil fungsi untuk menghasilkan plot
-    #             fig = text_analyzer_project.plot_letter_frequency_distribution(df_clean_tokped, 'content', bins=100)
-                
-    #             # Tampilkan plot di Streamlit
-    #             st.plotly_chart(fig)
-
-
-    #     with col_distribusi2[1]:
-    #         with st.container(height=480, border=True):
-    #             # Panggil fungsi untuk menghasilkan plot
-    #             fig = text_analyzer_project.freq_of_words_plotly(df_clean_tokped, 'content')
-                
-    #             # Tampilkan plot di Streamlit
-    #             st.plotly_chart(fig)
-                
-                
-    #     with col_distribusi3[2]:
-    #         with st.container(height=480, border=True):
-    #             plt_freq_meanlength_word_tokped = text_analyzer_project.freq_meanlength_word(df_clean_tokped, col='content')
-    #             st.plotly_chart(plt_freq_meanlength_word_tokped)
+    
                 
     
     
