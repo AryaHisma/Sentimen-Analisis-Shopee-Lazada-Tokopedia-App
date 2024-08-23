@@ -14,6 +14,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 def aplikasi():
     # Fungsi untuk memeriksa dan mengunduh resource NLTK
@@ -31,6 +33,7 @@ def aplikasi():
     # Panggil fungsi untuk mengunduh resource yang diperlukan
     download_nltk_resources()
             
+    
     
     st.title('Paragraf Analisis App')
     
