@@ -33,6 +33,13 @@ download_nltk_resources()
 
 class TextProcessing:
     def __init__(self) -> None:
+        # Menetapkan path direktori NLTK
+        nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+        
+        # Menambahkan path direktori ke NLTK data path
+        if nltk_data_path not in nltk.data.path:
+            nltk.data.path.append(nltk_data_path)
+        
         # Panggil fungsi download_nltk_resources untuk memastikan resource telah diunduh
         download_nltk_resources()
         
