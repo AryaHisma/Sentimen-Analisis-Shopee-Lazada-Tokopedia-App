@@ -40,7 +40,7 @@ def aplikasi():
                 except LookupError:
                     nltk.download('punkt')
                 try:
-                    nltk.data.find('stopwords')
+                    nltk.data.find('corpora/stopwords')
                 except LookupError:
                     nltk.download('stopwords')
 
