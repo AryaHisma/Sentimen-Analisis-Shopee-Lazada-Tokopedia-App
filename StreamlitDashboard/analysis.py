@@ -37,6 +37,24 @@ def analysis():
         display_image("./assets/gambar/PREPROCES.png", use_column_width=True, channels="RGB")
         
         
+        
+    with st.container(height=830):
+        @st.cache_data(persist=True)
+        def display_image(image_path, use_column_width=True, channels="RGB"):
+            """
+            Menampilkan gambar di Streamlit.
+            
+            Parameters:
+            - image_path (str): Path ke file gambar.
+            - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+            - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
+            """
+            image = Image.open(image_path)
+            st.image(image, use_column_width=use_column_width, channels=channels)
+
+        display_image("./assets/gambar/alur.jpg", use_column_width=True, channels="RGB")
+        
+        
     # Header datset
     st.header("Raw Dataset")
 

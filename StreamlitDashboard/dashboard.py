@@ -64,6 +64,30 @@ def dashboard():
         st.title("Shopee")
             
         with st.container(height=400, border=True):
+            st.markdown('''
+                        Berdasarkan analisis teks dari ulasan pengguna, beberapa aspek utama yang sering dibicarakan di Shopee adalah "belanja shopee', 
+                        "gratis ongkir",  "barang tidak", "shopee pay", "perbaikan mohon", "biaya layanan", 
+                        dan "biaya penanganan".
+
+                        Kata "belanja shopee" identik dengan sentimen positif bagi shopee. Pengguna sangat senang, sangat terbantu oleh shopee dalam
+                        memenuhi kebutuhannya. Kata "belanja shopee" juga sering dikaitkan dengan kata "gratis ongkir". Ada beberapa sentimen negatif 
+                        yang diberikan pengguna yaitu adanya minimal belanja dan sering juga voucher gratis ongkir tidak digunakan oleh pengguna.
+                        
+                        
+                        Kata "barang tidak" identik dengan sentimen negatif terhadap aplikasi shopee. Diantaranya : barang tidak sesuai pesanan, 
+                        tidak sesuai deskripsi dan tidak sesuai gambar.
+
+                        Kata "shopee pay" tidak terlalu banyak diulas oleh pengguna aplikasi shopee. Namun memiliki komentar positif dari pengguna 
+                        aplikasi
+                        
+                        Kata "biaya layanan" dan "biaya penanganan" tidak banyak dibahas, namun muncul dalam ulasan pengguna shopee yang mengindikasikan
+                        sentimen negatif terhadap aplikasi shopee.
+                        
+                        ''')
+        
+        
+        
+        with st.container(height=400, border=True):
             st.write('N-gram 4 kata yang sering muncul dikelompokkan menjadi 2 kata')
             result_df_top_4gram_shopee = text_analyzer_project.combine_top_ngram(df_clean_shopee, col='content', n=4)
             result_df_top_4gram_shopee = pd.DataFrame(result_df_top_4gram_shopee, columns=['N-gram (4 kata)', 'Frekuensi'])
@@ -83,6 +107,27 @@ def dashboard():
 
     with row1[1]:
         st.title("Lazada")
+        
+        
+        with st.container(height=400, border=True):
+            st.markdown('''
+                        Berdasarkan analisis teks dari ulasan pengguna, beberapa aspek utama yang sering dibicarakan di lazada adalah "belanja lazada", 
+                        "tidak sesuai",  "barang tidak", "gratis ongkir", "pengiriman cepat".
+
+                        Kata "belanja lazada" : identik dengan sentimen positif bagi shopee. Pengguna sangat senang, sangat puas berbelanja dilazada.
+                        beberapa komentar positif lainnya belanja dilazada tidak ribet, harga murah dan tidak kecewa. Kata "belanja lazada" juga 
+                        sering dikaitkan dengan kata "gratis ongkir", "barang tidak", dan "pengiriman cepat.
+                        
+                        Kata "belanja lazada" yang dikaitkkan dengan "gratis ongkir" menerima ulasan negatif dari pengguna lazada, yaitu perihal minimal
+                        belanja dan tidak tersedianya voucher gratis ongkir.
+                        
+                        Kata "belanja lazada" yang dikaitkan dengan "barang tidak" menerima ulasan negatif dari pengguna, yaitu : barang yang diterima 
+                        pengguna tidak sesuai gambar, tidak sesuai deskripsi dan pesanan.
+                        
+                        Kata "belanja lazada" yang dikaitkan dengan "pengiriman cepat" mendapat ulasan positif dari pengguna dimana kurir yang mengantarkan
+                        barang ramah. 
+                        
+                        ''')
            
         with st.container(height=400, border=True):
             st.write('N-gram 4 kata yang sering muncul dikelompokkan menjadi 2 kata')
@@ -103,6 +148,22 @@ def dashboard():
 
     with row1[2]:
         st.title("Tokopedia")
+        
+        with st.container(height=400, border=True):
+            st.markdown('''
+                        Berdasarkan analisis teks dari ulasan pengguna, beberapa aspek utama yang sering dibicarakan di tokopedia adalah "terimakasih tokopedia", 
+                        "sangat menbantu",  "skill academy", "pelatihan prakerja".
+
+                        Kata "terimakasih tokopedia" mendapatkan ulasan positif dari penggunanya berupa komentar sangat bagus dan mudah dipahami.
+                        Kata "terimakasih tokopedia" terkait langsung dengan kata "skill academy" dan kata "sangat membantu" yang mendapatkan ulasan positif
+                        dari para penggunanya. 
+                        
+                        Kata "terimakasih tokopedia" yang berkaitan dengan kata "skill academy" mendapatkan ulasan netral seperti membeli pelatihan 
+                        by ruang guru, kartu prakerja dan pelatihan prakerja.
+                        
+                        Kata "terimakasih tokopedia" yang berkaitan dengan kata "sangat membantu" mendapatkan ulasan positif seperti sangat membantu 
+                        mengikuti pelatihan dan menyelesaikan pelatihan. 
+                        ''')
             
         with st.container(height=400, border=True):
             st.write('N-gram 4 kata yang sering muncul dikelompokkan menjadi 2 kata')

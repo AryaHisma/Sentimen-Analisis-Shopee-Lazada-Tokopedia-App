@@ -37,7 +37,10 @@ def setup_sidebar():
         st.session_state.page = "Exploratory Data Analisis"
     if st.sidebar.button("Preprocessing Data"):
         st.session_state.page = "Preprocessing Data"
-    if st.sidebar.button("Paragraf Analisis App"):
+        
+    st.sidebar.title("Apps")
+    
+    if st.sidebar.button("Paragraf Analisis Apps"):
         st.session_state.page = "Paragraf Analisis App"
     
     st.sidebar.title("My Profil")
