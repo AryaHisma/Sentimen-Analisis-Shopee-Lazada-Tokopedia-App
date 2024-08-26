@@ -590,6 +590,113 @@ def freq_of_words_plotly(df, col):
                        font=dict(color='red', size=12))
 
     return fig
+
+
+
+# Fungsi untuk menghitung rata-rata jumlah kata dan menampilkan visualisasi card
+def freq_of_words_plotly_with_card(df, col):
+    """
+    Menampilkan histogram distribusi frekuensi jumlah kata per teks dalam kolom yang ditentukan,
+    serta rata-rata jumlah kata dalam bentuk visualisasi card.
+    
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk jumlah kata.
+    
+    Returns:
+    - fig: Plotly figure object untuk digunakan di Streamlit.
+    """
+    # Menghitung jumlah kata dalam setiap teks
+    words = df[col].str.split().apply(len)
+    
+    # Menghitung rata-rata jumlah kata
+    mean_value = words.mean()
+
+    # Menampilkan rata-rata dalam visualisasi card
+    st.metric(label="Rata-rata Jumlah Kata per Teks", value=f"{mean_value:.2f}")
+
+    # Menentukan rentang bins
+    bins_range = np.arange(0, 50, 1)
+
+    # Hitung histogram
+    hist_values, bin_edges = np.histogram(words, bins=bins_range, density=False)
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+    # Hitung KDE
+    kde = gaussian_kde(words, bw_method=0.3)
+    kde_x = np.linspace(0, 50, 1000)
+    kde_y = kde.pdf(kde_x)
+    
+    # Menyesuaikan KDE dengan skala histogram
+    kde_y = kde_y * hist_values.max() * (bin_edges[1] - bin_edges[0]) / kde_y.max()
+
+    # Membuat histogram dan KDE menggunakan Plotly
+    fig = go.Figure()
+
+    # Tambahkan histogram
+    fig.add_trace(go.Bar(
+        x=bin_centers,
+        y=hist_values,
+        marker_color='skyblue',
+        name='Frekuensi',
+        opacity=0.7
+    ))
+
+    # Tambahkan KDE
+    fig.add_trace(go.Scatter(
+        x=kde_x,
+        y=kde_y,
+        mode='lines',
+        line=dict(color='green', width=2),
+        name='KDE'
+    ))
+
+    # Mengatur layout
+    fig.update_layout(
+        title={'text': 'Distribusi Frekuensi Jumlah Kata per Teks', 'x': 0.2, 'font': {'color': 'black', 'size': 15}},
+        xaxis_title='Jumlah Kata',
+        yaxis_title='Frekuensi',
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        xaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=10,  # Interval setiap 10
+            range=[0, 50],  # Batas maksimum sumbu x
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu x
+            zerolinecolor='black',  # Warna garis sumbu x
+            zerolinewidth=2  # Ketebalan garis sumbu x
+        ),
+        yaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=500,  # Interval setiap 500
+            range=[0, max(hist_values) + 500],  # Batas maksimum sumbu y   
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu y
+            zerolinecolor='black',  # Warna garis sumbu y
+            zerolinewidth=2  # Ketebalan garis sumbu y
+        ),
+        font=dict(color='black'),  # Mengatur warna teks pada keseluruhan plot
+        showlegend=False  # Menghilangkan legend
+    )
+    
+    # Menambahkan garis vertikal untuk nilai rata-rata
+    fig.add_shape(type='line',
+                  x0=mean_value, y0=0, x1=mean_value, y1=max(hist_values) + 500,
+                  line=dict(color='red', dash='dash', width=2))
+    fig.add_annotation(x=mean_value, y=max(hist_values) - 500,
+                       text=f'Rata-rata: {mean_value:.2f}',
+                       showarrow=True,
+                       arrowhead=1,
+                       ax=30,
+                       ay=-40,
+                       font=dict(color='red', size=12))
+
+    return fig
     
 
 def freq_of_words_plotly_analisis(df, col):
@@ -1282,6 +1389,43 @@ def combine_top_ngram(df, col, n, most_common=100000):
     
     return combined_ngrams
 
+
+def combine_top_ngram_df(df, col, n, most_common=100000):
+    """
+    Menghitung n-gram yang paling sering muncul dalam kolom yang ditentukan dan mengembalikannya sebagai DataFrame.
+    
+    Parameters:
+    - df: DataFrame dengan kolom teks yang sudah dibersihkan.
+    - col: Nama kolom yang berisi teks untuk dianalisis.
+    - n: Integer, ukuran dari n-gram.
+    - most_common: Integer, jumlah n-gram yang paling sering muncul untuk dikembalikan.
+    
+    Returns:
+    - DataFrame dengan n-gram dan frekuensinya.
+    """
+
+    # Gabungkan teks dari kolom yang ditentukan menjadi satu string
+    texts = ' '.join(df[col])
+    
+    # Buat n-gram dari teks yang digabungkan
+    ngram = ngrams(texts.split(), n)
+    
+    # Hitung frekuensi kemunculan setiap n-gram
+    counts = Counter(ngram)
+    
+    # Dapatkan n-gram yang paling umum
+    top_ngram = counts.most_common(most_common)
+    
+    # Mengonversi ke DataFrame
+    top_ngram_df = pd.DataFrame(top_ngram, columns=['ngram', 'frequency'])
+    
+    # Gabungkan kata-kata dalam setiap n-gram menjadi string
+    top_ngram_df['ngram'] = top_ngram_df['ngram'].apply(lambda x: ' '.join(x))
+    
+    return top_ngram_df
+
+
+
 def combine_top_ngram_most_common(df, col, n, most_common=50):
     """
     Menghitung n-gram yang paling sering muncul dalam kolom yang ditentukan dan mengembalikannya sebagai DataFrame.
@@ -1401,6 +1545,149 @@ def transform_ngrams_to_pairs(df: pd.DataFrame) -> pd.DataFrame:
     # Terapkan fungsi pada kolom 'n_gram'
     df['n_gram'] = df['n_gram'].apply(format_n_gram)
     return df
+
+
+def calculate_text_statistics(df, text_column):
+    """
+    Menghitung rata-rata jumlah huruf, jumlah kata per teks, dan panjang kata rata-rata.
+    
+    Parameters:
+    - df: DataFrame yang berisi kolom teks.
+    - text_column: Nama kolom yang berisi teks.
+    
+    Returns:
+    - dictionary dengan statistik teks
+    """
+    # Menghitung jumlah huruf per teks
+    df['num_chars'] = df[text_column].apply(len)
+    
+    # Menghitung jumlah kata per teks
+    df['num_words'] = df[text_column].apply(lambda x: len(x.split()))
+    
+    # Menghitung panjang kata rata-rata per teks
+    df['avg_word_length'] = df[text_column].apply(lambda x: sum(len(word) for word in x.split()) / len(x.split()) if x.split() else 0)
+    
+    # Menghitung rata-rata jumlah huruf, jumlah kata per teks, dan panjang kata rata-rata
+    stats = {
+        'avg_num_chars': df['num_chars'].mean(),
+        'avg_num_words': df['num_words'].mean(),
+        'avg_word_length': df['avg_word_length'].mean()
+    }
+    
+    return stats
+
+
+
+# def display_statistics(stats, marketplace_name):
+#     """
+#     Menampilkan statistik dalam bentuk card di Streamlit.
+    
+#     Parameters:
+#     - stats: dictionary dengan statistik
+#     - marketplace_name: Nama marketplace
+#     """
+#     st.write(f"#### Statistik untuk {marketplace_name}")
+    
+#     # Menggunakan st.columns untuk menampilkan card
+#     cols = st.columns(3)
+    
+#     with cols[0]:
+#         st.metric(label="Rata-rata Jumlah Huruf", value=f"{stats['avg_num_chars']:.2f}")
+    
+#     with cols[1]:
+#         st.metric(label="Rata-rata Jumlah Kata Per Teks", value=f"{stats['avg_num_words']:.2f}")
+    
+#     with cols[2]:
+#         st.metric(label="Panjang Kata Rata-rata", value=f"{stats['avg_word_length']:.2f}")
+
+
+def display_statistics(stats, marketplace_name):
+    """
+    Menampilkan statistik dalam bentuk card secara horizontal di Streamlit dengan border dan background putih,
+    serta teks berwarna hitam. Statistik ditampilkan dalam card-card kecil di dalam card utama.
+    
+    Parameters:
+    - stats: dictionary dengan statistik
+    - marketplace_name: Nama marketplace
+    """
+    # HTML dan CSS untuk card utama
+    card_main_html = f"""
+    <div style="
+        background-color: white;
+        border: 1px solid #e1e1e1;
+        border-radius: 0px;
+        padding: 10px;
+        margin: 0px;
+        box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        display: flex;
+        flex-direction: column;
+        max-width: 550px;
+        text-align: left;
+    ">
+        <h4 style="margin: 0; color: black;">{marketplace_name}</h4>
+        <div style="
+            display: flex;
+            flex-direction: row;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        ">
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Rata-rata Jumlah Huruf: <strong>{stats['avg_num_chars']:.2f}</strong></p>
+            </div>
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Rata-rata Jumlah Kata Per Teks: <strong>{stats['avg_num_words']:.2f}</strong></p>
+            </div>
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Panjang Kata Rata-rata: <strong>{stats['avg_word_length']:.2f}</strong></p>
+            </div>
+        </div>
+    </div>
+    """
+    
+    return card_main_html
+
+
+
+# Fungsi untuk menghitung Betweenness Centrality dan mengonversi menjadi DataFrame
+def compute_betweenness_centrality(df_clean, col, n, most_common, marketplace_name):
+    result_combine_top_ngram = combine_top_ngram_most_common(df_clean, col=col, n=n, most_common=most_common)
+    
+    G = nx.Graph()
+    
+    for items, count in result_combine_top_ngram:
+        G.add_edge(items[0], items[1], weight=count)
+    
+    best_connector = nx.betweenness_centrality(G)
+    
+    df_best_connector = pd.DataFrame(
+        sorted(best_connector.items(), key=lambda x: x[1], reverse=True),
+        columns=['N-gram', 'Betweenness Centrality']
+    )
+    
+    df_best_connector['Marketplace'] = marketplace_name
+    
+    return df_best_connector
 
 
 
