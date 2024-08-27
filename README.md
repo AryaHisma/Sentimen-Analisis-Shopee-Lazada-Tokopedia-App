@@ -1,6 +1,6 @@
 # Sentimen-Analisis-Marketplace-App
 
-![Alt Text](assets/gambar/screnshoot tugas.png)
+![logo](assets/gambar/screnshoot tugas.png)
 
 
 
