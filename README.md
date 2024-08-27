@@ -12,7 +12,7 @@ Dataset ini terdiri dari beberapa kolom, yaitu:
 - **year**: Tahun review pelanggan pengguna.
 
 
-
+![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/alur.jpg)
 
 
 
