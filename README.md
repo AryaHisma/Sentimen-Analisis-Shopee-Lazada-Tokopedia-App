@@ -1,6 +1,6 @@
 # Sentimen-Analisis-Marketplace-App
 
-![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/tree/main/assets/gambar/screnshoot_tugas.png)
+![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/screenshoot.png)
 
 
 Berikut ini adalah sentiment analisis marketplace online dengan fokus aplikasi Shopee, Lazada, dan Tokopedia.  
