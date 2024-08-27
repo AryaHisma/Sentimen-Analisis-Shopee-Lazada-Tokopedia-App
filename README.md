@@ -1,6 +1,7 @@
 # Sentimen-Analisis-Marketplace-App
 
-![logo](assets/gambar/screnshoot tugas.png)
+![Alt Text](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/tree/main/assets/gambar/screnshoot_tugas.png)
+
 
 
 
