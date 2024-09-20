@@ -2,7 +2,7 @@
 
 Dokumentasi ini tersedia dalam beberapa bahasa. Silakan pilih bahasa yang Anda inginkan.
 
-- [Bahasa Inggris](../en/index.md)
+- [Bahasa Inggris](../docs/en/index.md)
 - [Bahasa Indonesia](index.md)
 
 ## Pengenalan
