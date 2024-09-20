@@ -1,7 +1,5 @@
 # Sentimen-Analisis-Marketplace-App
 
-## English
-
 ![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/screenshoot.png)
 
 
