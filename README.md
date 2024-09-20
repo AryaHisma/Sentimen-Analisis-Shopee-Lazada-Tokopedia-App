@@ -1,6 +1,10 @@
-# Project Documentation
+# Sentimen-Analisis-Marketplace-App
 
-This project is available in the following languages:
+**Choose your language / Pilih bahasa:**
+- [English](README-en.md)
+- [Bahasa Indonesia](README-id.md)
 
-- [English](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/docs/en/)
-- [Bahasa Indonesia](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/docs/id/)
+
+
+
+
