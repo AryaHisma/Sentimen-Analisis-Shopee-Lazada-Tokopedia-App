@@ -21,7 +21,7 @@ Dataset ini terdiri dari beberapa kolom, yaitu:
 
 ![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/alur.jpg)
 
-To install the project...
+
 
 ## Bahasa Indonesia
 
