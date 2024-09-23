@@ -522,11 +522,11 @@ def about():
             # Job details
             st.markdown('''
             <div class="profil-description">
-            Seorang data analis dengan pengalaman lebih dari 5 tahun di bidang analisis data, saya memiliki keterampilan mendalam dalam:
-            Pembersihan, Transformasi, dan Penyimpanan Data: Menggunakan Tableau Prep dan Python untuk membersihkan, mentransformasi, dan menyimpan data dalam data warehouse, memastikan konsistensi dan aksesibilitas data.
-            Visualisasi Data: Membuat visualisasi data interaktif dengan Tableau dan Power BI, mendesain dashboard yang mendukung pengambilan keputusan strategis.
-            Uji Statistik dan Machine Learning: Melakukan analisis statistik dan menerapkan algoritma machine learning dengan Python, termasuk uji korelasi, analisis regresi, dan analisis cluster. Mengembangkan model untuk prediksi dan klasifikasi, serta visualisasikan hasilnya untuk komunikasi yang efektif.
-            Kombinasi keterampilan teknis ini memungkinkan saya untuk memberikan wawasan yang berharga dan mendukung keputusan berbasis data di berbagai konteks bisnis.
+            As a data analyst with over 5 years of experience in the field of data analysis, I have in-depth skills in:
+            Data Cleaning, Transformation, and Storage : Using Tableau Prep and Python to clean, transform, and store data in a data warehouse, ensuring data consistency and accessibility.
+            Data Visualization: Creating interactive data visualizations with Tableau and Power BI, designing dashboards that support strategic decision-making.
+            Statistical Testing and Machine Learning: Conducting statistical analyses and applying machine learning algorithms with Python, including correlation tests, regression analysis, and cluster analysis. Developing models for prediction and classification, as well as visualizing results for effective communication.
+            This combination of technical skills enables me to provide valuable insights and support data-driven decisions in various business contexts.
             </div>
         </div>
         ''', unsafe_allow_html=True)
@@ -674,16 +674,16 @@ def about():
         <div class="job-company">PT Pembangunan Perumahan (Persero) .Tbk</div>
         <div class="job-date">Jakarta, Sep 2018 - Saat Ini</div>
         <div class="job-description">
-            <strong> - Melakukan Pembersihan, Transformasi, dan Penyimpanan Data di Data Warehouse</strong><br>
-            Saya bertanggung jawab untuk melakukan pembersihan dan transformasi data menggunakan Tableau Prep. Proses ini mencakup identifikasi dan penghapusan data duplikat, mengatasi data yang hilang, dan standardisasi format data. Saya juga memanfaatkan extension analytics dengan Python untuk mengotomatiskan dan meningkatkan efisiensi proses transformasi data. Setelah data dibersihkan dan ditransformasikan, saya menyimpannya ke dalam data warehouse yang terintegrasi untuk memastikan aksesibilitas dan konsistensi data bagi tim analitik lainnya.
+            <strong> - Performing Data Cleaning, Transformation, and Storage in the Data Warehouse</strong><br>
+            I am responsible for data cleaning and transformation using Tableau Prep. This process includes identifying and removing duplicate data, handling missing data, and standardizing data formats. I also leverage Python analytics extensions to automate and enhance the efficiency of the data transformation process. Once the data is cleaned and transformed, I store it in an integrated data warehouse to ensure accessibility and data consistency for other analytics teams.
         </div>
         <div class="job-description">
             <strong> - Visualisasi Data</strong><br>
-            Saya memiliki pengalaman dalam membuat visualisasi data yang informatif dan interaktif menggunakan Tableau dan Power BI. Saya merancang dashboard yang intuitif dan mudah dipahami, yang membantu dalam pengambilan keputusan strategis berdasarkan data. Visualisasi yang saya buat mencakup berbagai jenis grafik, peta, dan laporan yang memberikan wawasan mendalam mengenai tren dan pola dalam data.
+            I have experience in creating informative and interactive data visualizations using Tableau and Power BI. I design intuitive and easy-to-understand dashboards that aid in strategic decision-making based on data. The visualizations I create include various types of charts, maps, and reports that provide deep insights into trends and patterns within the data.
         </div>
         <div class="job-description">
             <strong> - Melakukan Uji Statistik dan Machine Learning</strong><br>
-            Dalam pekerjaan saya, saya juga melakukan uji statistik dan penerapan algoritma machine learning menggunakan Python. Saya melakukan analisis statistik seperti uji korelasi, analisis regresi, dan analisis cluster untuk memahami karakteristik dan hubungan dalam data. Selain itu, saya mengembangkan model machine learning untuk prediksi dan klasifikasi. Hasil dari analisis dan model tersebut kemudian saya visualisasikan menggunakan Tableau untuk memudahkan interpretasi dan komunikasi hasil kepada tim dan stakeholder lainnya.
+            In my work, I also perform statistical tests and apply machine learning algorithms using Python. I conduct statistical analyses such as correlation tests, regression analysis, and cluster analysis to understand the characteristics and relationships within the data. Additionally, I develop machine learning models for prediction and classification. The results from these analyses and models are then visualized using Tableau to facilitate the interpretation and communication of findings to the team and other stakeholders.
         </div>
         </div>
         ''', unsafe_allow_html=True)

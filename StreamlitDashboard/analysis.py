@@ -76,7 +76,7 @@ def analysis():
                 image = Image.open(image_path)
                 st.image(image, use_column_width=use_column_width, channels=channels)
 
-            display_image("./assets/gambar/PREPROCES.png", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/PREPROCES_id.png", use_column_width=True, channels="RGB")
             
             
             
@@ -94,7 +94,7 @@ def analysis():
                 image = Image.open(image_path)
                 st.image(image, use_column_width=use_column_width, channels=channels)
 
-            display_image("./assets/gambar/alur.jpg", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/alur_id.jpg", use_column_width=True, channels="RGB")
             
             
         # Header datset
@@ -1062,7 +1062,7 @@ def analysis():
                     
                     @st.cache_data(persist=True)
                     def generate_wordcloud_shopee(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                        return text_analyzer_project.generate_wordcloud_id(df, col='content')
                     
                     plt_generate_wordcloud_shopee = generate_wordcloud_shopee(data_grafik_shopee())
                     
@@ -1102,7 +1102,7 @@ def analysis():
                     
                     @st.cache_data(persist=True)
                     def generate_wordcloud_lazada(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                        return text_analyzer_project.generate_wordcloud_id(df, col='content')
                     
                     plt_generate_wordcloud_lazada = generate_wordcloud_lazada(data_grafik_lazada())
                     
@@ -1141,7 +1141,7 @@ def analysis():
                     
                     @st.cache_data(persist=True)
                     def generate_wordcloud_tokped(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                        return text_analyzer_project.generate_wordcloud_id(df, col='content')
                     
                     plt_generate_wordcloud_tokped = generate_wordcloud_tokped(data_grafik_shopee())
                     
@@ -1559,13 +1559,13 @@ def analysis():
                 image = Image.open(image_path)
                 st.image(image, use_column_width=use_column_width, channels=channels)
 
-            display_image("./assets/gambar/PREPROCES.png", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/PREPROCES_id.png", use_column_width=True, channels="RGB")
             
             
             
         with st.container(height=830):
             @st.cache_data(persist=True)
-            def display_image(image_path, use_column_width=True, channels="RGB"):
+            def display_image_en(image_path, use_column_width=True, channels="RGB"):
                 """
                 Menampilkan gambar di Streamlit.
                 
@@ -1577,7 +1577,7 @@ def analysis():
                 image = Image.open(image_path)
                 st.image(image, use_column_width=use_column_width, channels=channels)
 
-            display_image("./assets/gambar/alur.jpg", use_column_width=True, channels="RGB")
+            display_image_en("./assets/gambar/alur_en.png", use_column_width=True, channels="RGB")
             
             
         # Header datset
@@ -1629,18 +1629,14 @@ def analysis():
         # Header Text PreProcessing
         st.header("Text PreProcessing")
         st.markdown('''
-                    Text preprocessing adalah langkah awal dalam analisis teks dan pemrosesan bahasa alami (NLP) yang melibatkan pembersihan dan transformasi 
-                    data teks mentah menjadi format yang lebih bersih dan terstruktur. Tujuan utamanya adalah mempersiapkan data untuk analisis lebih lanjut, 
-                    seperti analisis sentimen, klasifikasi teks, atau pembuatan model bahasa
+                    Text preprocessing is the initial step in text analysis and natural language processing (NLP) that involves cleaning and transforming raw text data into a cleaner and more structured format. Its primary goal is to prepare the data for further analysis, such as sentiment analysis, text classification, or language model creation.
                     ''')
 
 
         # SubHeader Text PreProcessing
         st.subheader("Lower text")
         st.markdown('''
-                    Mengubah semua huruf dalam teks menjadi huruf kecil untuk memastikan konsistensi, karena perbedaan huruf besar dan kecil tidak penting 
-                    dalam banyak aplikasi NLP. Contoh: Mengubah "Hello World" menjadi "hello world". Selain itu juga dilakukan transformasi unicode style dimana
-                    adanya penulisan kata yang tidak normal seperti "***contoh***" menjadi "contoh".
+                    Converting all letters in the text to lowercase ensures consistency, as the distinction between uppercase and lowercase letters is often not important in many NLP applications. For example, converting "Hello World" to "hello world." Additionally, a transformation is performed to normalize unicode style, where unconventional word formatting like "contoh" is changed to "contoh".
                     ''')
 
 
@@ -1752,8 +1748,7 @@ def analysis():
         # SubHeader Text PreProcessing
         st.subheader("Remove emoji")
         st.markdown('''
-                    Emoji mungkin tidak memberikan informasi yang berguna dalam beberapa jenis analisis teks.
-                    Menghapus emoji dapat membantu memastikan bahwa teks konsisten dan fokus pada konten yang relevan.
+                    Emojis may not provide useful information in certain types of text analysis. Removing emojis can help ensure that the text is consistent and focused on relevant content.
                     ''')
 
 
@@ -1869,8 +1864,7 @@ def analysis():
         # SubHeader Text PreProcessing
         st.subheader("Text Cleaning")
         st.markdown('''
-                    Menghapus tanda baca yang mungkin tidak memberikan informasi yang berguna dalam beberapa jenis analisis teks.
-                    Menghapus tanda baca dapat membantu memastikan bahwa teks konsisten dan fokus pada konten yang relevan.
+                    Removing punctuation that may not provide useful information in certain types of text analysis. Eliminating punctuation can help ensure that the text is consistent and focused on relevant content.
                     ''')
 
         
@@ -1985,8 +1979,7 @@ def analysis():
         # SubHeader Text PreProcessing
         st.subheader("Slang Transformation") 
         st.markdown('''
-                Mengubah kata kata slang (tidak baku) menjadi kata kata baku yang berguna untuk memberikan informasi dalam analisis teks.
-                Mengubah kata kata slang (tidak baku) menjadi kata kata baku untuk mempermudah dalam analisis teks.
+                    Transforming slang (non-standard) words into standard words is useful for providing clarity in text analysis. This conversion helps simplify the analysis process by ensuring that the text is consistent and interpretable.
                     ''')  
     
             
@@ -2106,7 +2099,7 @@ def analysis():
         # SubHeader Stopword Removal
         st.subheader("Stopword Removal")
         st.markdown('''
-                Menghapus kata-kata umum (seperti "yang", "yakni", "seperti") yang sering muncul tetapi tidak memberikan informasi penting.
+                Removing common words (such as "yang", "yakni", "seperti") that frequently appear but do not provide significant information is useful for focusing on more meaningful content during text analysis. These words, often called stopwords, are generally filtered out to improve the relevance of the analysis.
                     ''') 
         
         # Load dataset stopwords
@@ -2228,12 +2221,9 @@ def analysis():
         # SubHeader Stemming
         st.subheader("Stemming")
         st.markdown('''
-                Stemming adalah proses dalam pengolahan bahasa alami (Natural Language Processing atau NLP) yang digunakan untuk mengubah kata-kata 
-                dalam bentuk yang bervariasi menjadi bentuk dasarnya atau akar katanya (stem). Tujuan utama dari stemming adalah untuk mengurangi variasi 
-                kata yang berbeda namun memiliki arti yang sama, sehingga analisis data teks dapat dilakukan lebih efisien.
-                Contoh sederhana dari stemming adalah sebagai berikut:
-                Kata "berlari", "berlari-lari", dan "pelari" semuanya akan diubah menjadi akar kata "lari".
-                Kata "makan", "memakan", "dimakan", dan "pemakan" akan diubah menjadi "makan".
+                Stemming is a process in Natural Language Processing (NLP) used to transform words in various forms into their root or base form (stem). The main goal of stemming is to reduce different word variations that share the same meaning, so that text data analysis can be performed more efficiently.
+
+                A simple example of stemming is as follows: The words "berlari", "berlari-lari", and "pelari" would all be transformed into the root word "lari". The words "makan", "memakan", "dimakan", and "pemakan" would be transformed into "makan".
                     ''') 
         
         # Load dataset slang
@@ -2379,25 +2369,15 @@ def analysis():
         
         
         # SubHeader Distribusi frekuensi
-        st.subheader("Distribusi frekuensi")
+        st.subheader("Frequency distribution")
         st.markdown('''
-                Memvisualisasikan distribusi frekuensi dari kata, yaitu : distribusi frekuensi jumlah huruf, distribusi frekuensi jumlah kata per teks dan 
-                distribusi frekuensi panjang kata rata rata.
-                
-                Distribusi frekuensi jumlah huruf adalah penghitungan seberapa sering sebuah teks memiliki jumlah huruf tertentu. 
-                Misalnya, jika Anda memiliki kumpulan teks, distribusi ini akan menunjukkan seberapa banyak teks yang memiliki, 
-                misalnya, 5 huruf, 10 huruf, dan seterusnya. Distribusi ini memberikan gambaran tentang seberapa panjang atau pendek karakteristik 
-                teks dalam hal jumlah huruf.
-                
-                Distribusi frekuensi jumlah kata per teks adalah penghitungan seberapa sering jumlah kata tertentu muncul dalam sebuah teks. 
-                Sebagai contoh, jika Anda menganalisis sekumpulan ulasan produk, distribusi ini akan menunjukkan berapa banyak ulasan yang terdiri 
-                dari, misalnya, 5 kata, 10 kata, dan seterusnya. Hal ini membantu memahami apakah teks cenderung terdiri dari sedikit kata (pendek) 
-                atau banyak kata (panjang).
-                
-                Distribusi frekuensi panjang kata rata-rata adalah penghitungan yang menunjukkan seberapa sering kata-kata dalam teks memiliki 
-                panjang tertentu jika dihitung rata-rata. Misalnya, jika sebuah teks terdiri dari 10 kata dengan jumlah total huruf sebanyak 50, 
-                maka panjang kata rata-ratanya adalah 5 huruf per kata. Distribusi ini menunjukkan seberapa sering kata-kata dalam teks cenderung 
-                memiliki panjang tertentu, memberikan wawasan tentang kompleksitas atau kesederhanaan kata yang digunakan dalam teks tersebut.
+                Visualizing the frequency distribution of words, which includes: the distribution of the frequency of the number of letters, the distribution of the frequency of the number of words per text, and the distribution of the average word length frequency.
+
+                The distribution of the frequency of the number of letters is a calculation of how often a text contains a certain number of letters. For example, if you have a text dataset, this distribution will show how many texts contain, say, 5 letters, 10 letters, and so on. This distribution provides an overview of how long or short the characteristics of the text are in terms of the number of letters.
+
+                The distribution of the frequency of the number of words per text is a calculation of how often a certain number of words appear in a text. For example, if you analyze a set of product reviews, this distribution will show how many reviews consist of, say, 5 words, 10 words, and so on. This helps to understand whether the text tends to consist of few words (short) or many words (long).
+
+                The distribution of the average word length frequency is a calculation that shows how often words in a text have a certain length when averaged. For example, if a text consists of 10 words with a total of 50 letters, the average word length is 5 letters per word. This distribution shows how often words in a text tend to have a certain length, providing insights into the complexity or simplicity of the words used in the text.
 
                     ''')
         
@@ -2410,29 +2390,29 @@ def analysis():
             with col_freq_of_char_shopee1:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_shopee1_fig():
-                    return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_shopee(), 'content', bins=100)
+                def col_freq_of_char_shopee1_fig_en():
+                    return text_analyzer_project.plot_letter_frequency_distribution_en(data_grafik_shopee(), 'content', bins=100)
                     
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_shopee1_fig())
+                st.plotly_chart(col_freq_of_char_shopee1_fig_en())
                 
                 
             with col_freq_of_char_shopee2:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_shopee2_fig():
-                    return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_shopee(), 'content')
+                def col_freq_of_char_shopee2_fig_en():
+                    return text_analyzer_project.freq_of_words_plotly_analisis_en(data_grafik_shopee(), 'content')
                     
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_shopee2_fig())
+                st.plotly_chart(col_freq_of_char_shopee2_fig_en())
                 
                 
             with col_freq_of_char_shopee3:
                 @st.cache_data(persist=True)
-                def plt_freq_meanlength_word_shopee():
-                    return text_analyzer_project.freq_meanlength_word(data_grafik_shopee(), col='content')
+                def plt_freq_meanlength_word_shopee_en():
+                    return text_analyzer_project.freq_meanlength_word_en(data_grafik_shopee(), col='content')
                 
-                st.plotly_chart(plt_freq_meanlength_word_shopee())
+                st.plotly_chart(plt_freq_meanlength_word_shopee_en())
                 
         
         
@@ -2442,29 +2422,29 @@ def analysis():
             with col_freq_of_char_lazada1:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_lazada1_fig():
-                    return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_lazada(), 'content', bins=100)
+                def col_freq_of_char_lazada1_fig_en():
+                    return text_analyzer_project.plot_letter_frequency_distribution_en(data_grafik_lazada(), 'content', bins=100)
                 
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_lazada1_fig())
+                st.plotly_chart(col_freq_of_char_lazada1_fig_en())
                 
                 
             with col_freq_of_char_lazada2:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_lazada2_fig():
-                    return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_lazada(), 'content')
+                def col_freq_of_char_lazada2_fig_en():
+                    return text_analyzer_project.freq_of_words_plotly_analisis_en(data_grafik_lazada(), 'content')
                 
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_lazada2_fig())
+                st.plotly_chart(col_freq_of_char_lazada2_fig_en())
                 
                 
             with col_freq_of_char_lazada3:
                 @st.cache_data(persist=True)
-                def plt_freq_meanlength_word_lazada():
-                    return text_analyzer_project.freq_meanlength_word(data_grafik_lazada(), col='content')
+                def plt_freq_meanlength_word_lazada_en():
+                    return text_analyzer_project.freq_meanlength_word_en(data_grafik_lazada(), col='content')
                 
-                st.plotly_chart(plt_freq_meanlength_word_lazada())
+                st.plotly_chart(plt_freq_meanlength_word_lazada_en())
         
         
         with tab_distribusi_tokped:
@@ -2473,41 +2453,38 @@ def analysis():
             with col_freq_of_char_tokped1:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_tokped1_fig():
-                    return text_analyzer_project.plot_letter_frequency_distribution(data_grafik_tokped(), 'content', bins=100)
+                def col_freq_of_char_tokped1_fig_en():
+                    return text_analyzer_project.plot_letter_frequency_distribution_en(data_grafik_tokped(), 'content', bins=100)
                 
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_tokped1_fig())
+                st.plotly_chart(col_freq_of_char_tokped1_fig_en())
                 
                 
             with col_freq_of_char_tokped2:
                 # Panggil fungsi untuk menghasilkan plot
                 @st.cache_data(persist=True)
-                def col_freq_of_char_tokped2_fig():
-                    return text_analyzer_project.freq_of_words_plotly_analisis(data_grafik_tokped(), 'content')
+                def col_freq_of_char_tokped2_fig_en():
+                    return text_analyzer_project.freq_of_words_plotly_analisis_en(data_grafik_tokped(), 'content')
                 
                 # Tampilkan plot di Streamlit
-                st.plotly_chart(col_freq_of_char_tokped2_fig())
+                st.plotly_chart(col_freq_of_char_tokped2_fig_en())
                 
                 
             with col_freq_of_char_tokped3:
                 @st.cache_data(persist=True)
-                def plt_freq_meanlength_word_tokped():
-                    return text_analyzer_project.freq_meanlength_word(data_grafik_tokped(), col='content')
+                def plt_freq_meanlength_word_tokped_en():
+                    return text_analyzer_project.freq_meanlength_word_en(data_grafik_tokped(), col='content')
                 
-                st.plotly_chart(plt_freq_meanlength_word_tokped())
+                st.plotly_chart(plt_freq_meanlength_word_tokped_en())
         
         
         # SubHeader N-gram & Wordcloud
         st.subheader("N-gram & Wordcloud")
         st.markdown('''
-                N-gram adalah sebuah teknik dalam pengolahan bahasa alami (NLP) yang digunakan untuk menganalisis dan memodelkan urutan kata atau token dalam teks. 
-                Istilah "n-gram" mengacu pada urutan kata atau token yang memiliki panjang tertentu, di mana "n" adalah jumlah kata atau token dalam urutan tersebut.
+                N-gram is a technique in natural language processing (NLP) used to analyze and model the sequence of words or tokens in a text. The term "n-gram" refers to a sequence of words or tokens of a certain length, where "n" is the number of words or tokens in that sequence.
                 
                 
-                Wordcloud adalah visualisasi yang sering digunakan untuk menampilkan frekuensi atau pentingnya kata dalam kumpulan teks dengan cara yang 
-                intuitif dan menarik. Dalam wordcloud, kata-kata yang lebih sering muncul dalam teks akan ditampilkan dengan ukuran yang lebih besar, 
-                sementara kata-kata yang kurang sering muncul akan ditampilkan dengan ukuran yang lebih kecil.
+                Wordcloud is a visualization often used to display the frequency or importance of words in a text corpus in an intuitive and engaging way. In a "wordcloud", words that appear more frequently in the text will be displayed in a larger size, while words that appear less frequently will be shown in a smaller size.
                     ''')
         
         # Tab Ngram dan wordcloud
@@ -2521,11 +2498,11 @@ def analysis():
             
             with tab_ngramword_shopee1:
                 with st.container(height=400, border=True):
-                    st.write('N-gram (4 kata) --> Mengambil 4 kata per unit yang sering muncul')
+                    st.write('N-gram (4 words) → Extracting 4 words per unit that frequently appear')
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_4gram = text_analyzer_project.top_ngram(data_grafik_shopee(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 kata)', 'Frekuensi'])
+                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 words)', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_4gram)
 
@@ -2535,21 +2512,21 @@ def analysis():
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_2gram = text_analyzer_project.combine_top_ngram(data_grafik_shopee(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 kata menjadi 2 kata', 'Frekuensi'])
+                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 words into 2 words', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_2gram_df)
             
             with tab_ngramword_shopee3:
                 with st.container(height=400, border=True):
-                    st.write('Wordcloud N-gram (4 kata jadi 2 kata)')
+                    st.write('Wordcloud N-gram (4 words into 2 words)')
                     
                     @st.cache_data(persist=True)
-                    def generate_wordcloud_shopee(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                    def generate_wordcloud_shopee_en(df):
+                        return text_analyzer_project.generate_wordcloud_en(df, col='content')
                     
-                    plt_generate_wordcloud_shopee = generate_wordcloud_shopee(data_grafik_shopee())
+                    plt_generate_wordcloud_shopee_en = generate_wordcloud_shopee_en(data_grafik_shopee())
                     
-                    st.pyplot(plt_generate_wordcloud_shopee)
+                    st.pyplot(plt_generate_wordcloud_shopee_en)
                 
         
         
@@ -2561,11 +2538,11 @@ def analysis():
             
             with tab_ngramword_lazada1:
                 with st.container(height=400, border=True):
-                    st.write('N-gram (4 kata) --> Mengambil 4 kata per unit yang sering muncul')
+                    st.write('N-gram (4 words) --> Taking 4 words per unit that frequently appear')
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_4gram = text_analyzer_project.top_ngram(data_grafik_lazada(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 kata)', 'Frekuensi'])
+                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 words)', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_4gram)
 
@@ -2575,21 +2552,21 @@ def analysis():
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_2gram = text_analyzer_project.combine_top_ngram(data_grafik_lazada(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 kata menjadi 2 kata', 'Frekuensi'])
+                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 words to 2 words', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_2gram_df)
             
             with tab_ngramword_lazada3:
                 with st.container(height=400, border=True):
-                    st.write('Wordcloud N-gram (4 kata jadi 2 kata)')
+                    st.write('Wordcloud N-gram (4 words to 2 words)')
                     
                     @st.cache_data(persist=True)
-                    def generate_wordcloud_lazada(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                    def generate_wordcloud_lazada_en(df):
+                        return text_analyzer_project.generate_wordcloud_en(df, col='content')
                     
-                    plt_generate_wordcloud_lazada = generate_wordcloud_lazada(data_grafik_lazada())
+                    plt_generate_wordcloud_lazada_en = generate_wordcloud_lazada_en(data_grafik_lazada())
                     
-                    st.pyplot(plt_generate_wordcloud_lazada)
+                    st.pyplot(plt_generate_wordcloud_lazada_en)
         
         
         with tab_ngramword_tokped:
@@ -2600,11 +2577,11 @@ def analysis():
             
             with tab_ngramword_tokped1:
                 with st.container(height=400, border=True):
-                    st.write('N-gram (4 kata) --> Mengambil 4 kata per unit yang sering muncul')
+                    st.write('N-gram (4 words) --> Taking 4 words per unit that frequently appear')
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_4gram = text_analyzer_project.top_ngram(data_grafik_tokped(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 kata)', 'Frekuensi'])
+                    result_df_top_4gram = pd.DataFrame(result_df_top_4gram, columns=['N-gram (4 words)', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_4gram)
 
@@ -2614,35 +2591,31 @@ def analysis():
                     # Memanggil fungsi untuk mendapatkan n-gram
                     result_df_top_2gram = text_analyzer_project.combine_top_ngram(data_grafik_tokped(), col='content', n=4)
                     # Konversi list of tuples menjadi DataFrame
-                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 kata menjadi 2 kata', 'Frekuensi'])
+                    result_df_top_2gram_df = pd.DataFrame(result_df_top_2gram, columns=['N-gram 4 words to 2 words', 'Frequency'])
                     # Tampilkan DataFrame di Streamlit
                     st.dataframe(result_df_top_2gram_df)
             
             with tab_ngramword_tokped3:
                 with st.container(height=400, border=True):
-                    st.write('Wordcloud N-gram (4 kata)')
+                    st.write('Wordcloud N-gram (4 words)')
                     
                     @st.cache_data(persist=True)
-                    def generate_wordcloud_tokped(df):
-                        return text_analyzer_project.generate_wordcloud(df, col='content')
+                    def generate_wordcloud_tokped_en(df):
+                        return text_analyzer_project.generate_wordcloud_en(df, col='content')
                     
-                    plt_generate_wordcloud_tokped = generate_wordcloud_tokped(data_grafik_shopee())
+                    plt_generate_wordcloud_tokped_en = generate_wordcloud_tokped_en(data_grafik_shopee())
                     
-                    st.pyplot(plt_generate_wordcloud_tokped)
+                    st.pyplot(plt_generate_wordcloud_tokped_en)
 
         
         # SubHeader Most Influential, Most Important Connection, Best Connector
-        st.subheader("Most Influential (Paling Berpengaruh), Most Important Connection (Koneksi Paling Penting) & Best Connector (Penghubung Terbaik)")
+        st.subheader("Most Influential, Most Important Connection & Best Connector")
         st.markdown('''
-                Most Influential (Paling Berpengaruh): merujuk pada node (simpul) yang memiliki pengaruh terbesar dalam jaringan. 
-                Node ini mungkin memiliki banyak koneksi (hubungan) dengan node lain atau berada pada posisi strategis yang memungkinkan mereka 
-                untuk memengaruhi banyak bagian dari jaringan.
+                Most Influential: refers to the node that has the greatest influence in the network. This node may have many connections with other nodes or be in a strategic position that allows it to influence many parts of the network.
                         
-                Most Important Connection (Koneksi Paling Penting): merujuk pada hubungan atau jalur yang paling penting dalam jaringan. 
-                Koneksi ini mungkin kritis untuk komunikasi atau aliran informasi dalam jaringan.
+                Most Important Connection: refers to the most critical relationship or path in the network. This connection may be crucial for communication or the flow of information within the network.
                 
-                Best Connector (Penghubung Terbaik): merujuk pada node yang berfungsi sebagai penghubung utama dalam jaringan, menghubungkan 
-                berbagai bagian jaringan yang mungkin tidak terhubung langsung tanpa kehadiran node tersebut.     
+                Best Connector: refers to the node that acts as the primary link in the network, connecting various parts of the network that might not be directly connected without the presence of that node.    
                             
                     ''')
         
@@ -2663,7 +2636,7 @@ def analysis():
 
             with col_most_shopee1:
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential N-gram 4 words into 2 words')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -2671,7 +2644,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -2679,7 +2652,7 @@ def analysis():
 
             with col_most_shopee2:
                 with st.container(height=350, border=True):
-                    st.write('Most Important Connection (Koneksi Paling Penting) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Important Connection N-gram 4 words into 2 words')
                     
                     # Most Important Connection
                     most_important = nx.eigenvector_centrality(G, max_iter=1000, tol=1e-06)
@@ -2687,7 +2660,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_important = pd.DataFrame(
                         sorted(most_important.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Eigenvector Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Eigenvector Centrality']
                     )
                     
                     # Display DataFrame
@@ -2695,7 +2668,7 @@ def analysis():
                     
             with col_most_shopee3:
                 with st.container(height=350, border=True):
-                    st.write('Best Connector (Penghubung Terbaik) N-gram 4 kata menjadi 2 kata')
+                    st.write('Best Connector N-gram 4 words into 2 words')
                     
                     # Best Connector
                     best_connector = nx.betweenness_centrality(G)
@@ -2703,7 +2676,7 @@ def analysis():
                     # Convert to DataFrame
                     df_best_connector = pd.DataFrame(
                         sorted(best_connector.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Betweenness Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Betweenness Centrality']
                     )
                     
                     # Display DataFrame
@@ -2725,7 +2698,7 @@ def analysis():
 
             with col_most_lazada1:
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential N-gram 4 words into 2 words')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -2733,7 +2706,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -2741,7 +2714,7 @@ def analysis():
 
             with col_most_lazada2:
                 with st.container(height=350, border=True):
-                    st.write('Most Important Connection (Koneksi Paling Penting) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Important Connection N-gram 4 words into 2 words')
                     
                     # Most Important Connection
                     most_important = nx.eigenvector_centrality(G, max_iter=1000, tol=1e-06)
@@ -2749,7 +2722,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_important = pd.DataFrame(
                         sorted(most_important.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Eigenvector Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Eigenvector Centrality']
                     )
                     
                     # Display DataFrame
@@ -2757,7 +2730,7 @@ def analysis():
                     
             with col_most_lazada3:
                 with st.container(height=350, border=True):
-                    st.write('Best Connector (Penghubung Terbaik) N-gram 4 kata menjadi 2 kata')
+                    st.write('Best Connector N-gram 4 words into 2 words')
                     
                     # Best Connector
                     best_connector = nx.betweenness_centrality(G)
@@ -2765,7 +2738,7 @@ def analysis():
                     # Convert to DataFrame
                     df_best_connector = pd.DataFrame(
                         sorted(best_connector.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Betweenness Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Betweenness Centrality']
                     )
                     
                     # Display DataFrame
@@ -2787,7 +2760,7 @@ def analysis():
 
             with col_most_tokped1:
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential N-gram 4 words into 2 words')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -2795,7 +2768,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -2803,7 +2776,7 @@ def analysis():
 
             with col_most_tokped2:
                 with st.container(height=350, border=True):
-                    st.write('Most Important Connection (Koneksi Paling Penting) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Important Connection N-gram 4 words into 2 words')
                     
                     # Most Important Connection
                     most_important = nx.eigenvector_centrality(G, max_iter=1000, tol=1e-06)
@@ -2811,7 +2784,7 @@ def analysis():
                     # Convert to DataFrame
                     df_most_important = pd.DataFrame(
                         sorted(most_important.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Eigenvector Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Eigenvector Centrality']
                     )
                     
                     # Display DataFrame
@@ -2819,7 +2792,7 @@ def analysis():
                     
             with col_most_tokped3:
                 with st.container(height=350, border=True):
-                    st.write('Best Connector (Penghubung Terbaik) N-gram 4 kata menjadi 2 kata')
+                    st.write('Best Connector N-gram 4 words into 2 words')
                     
                     # Best Connector
                     best_connector = nx.betweenness_centrality(G)
@@ -2827,7 +2800,7 @@ def analysis():
                     # Convert to DataFrame
                     df_best_connector = pd.DataFrame(
                         sorted(best_connector.items(), key=lambda x: x[1], reverse=True),
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Betweenness Centrality']
+                        columns=['N-gram 4 words into 2 words', 'Betweenness Centrality']
                     )
                     
                     # Display DataFrame
@@ -2835,11 +2808,9 @@ def analysis():
         
         
         # SubHeader Network Analisis
-        st.subheader("Network Analisis")
+        st.subheader("Network Analysis")
         st.markdown('''
-                Analisis jaringan (network analysis) adalah pendekatan untuk mempelajari hubungan dan struktur antara entitas yang saling terhubung dalam bentuk 
-                grafik atau jaringan. Ini melibatkan pemodelan dan analisis berbagai jenis hubungan dalam sistem kompleks, mulai dari jejaring sosial hingga 
-                sistem biologis dan teknologi.      
+                Network analysis is an approach to studying the relationships and structures between interconnected entities in the form of graphs or networks. It involves modeling and analyzing various types of relationships within complex systems, ranging from social networks to biological systems and technologies.     
                     ''')
         
         # Tab Ngram dan wordcloud
@@ -2847,12 +2818,11 @@ def analysis():
         
         
         with tab_network_shopee:
-            st.write('Network Analisis Seluruh Data N-gram 4 kata menjadi 2 kata')
+            st.write('Network Analysis of All Data N-gram 4 words into 2 words')
             st.markdown('''
                         **Note:** 
                         
-                        **Most Common** adalah parameter yang dapat diubah ubah untuk menampilkan jumlah item yang paling sering muncul sejumlah 
-                        most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
+                        **Most Common** is a parameter that can be adjusted to display the number of items that appear most frequently, based on the specified number of most common items from the n-gram analysis. (The larger the most common, the longer the data will take to load).
 
                         ''')
             
@@ -2908,12 +2878,11 @@ def analysis():
         
         
         with tab_network_lazada:
-            st.write('Network Analisis Seluruh Data N-gram 4 kata menjadi 2 kata')
+            st.write('Network Analysis of All Data N-gram 4 into 2 words')
             st.markdown('''
                         **Note:** 
                         
-                        **Most Common** adalah parameter yang dapat diubah ubah untuk menampilkan jumlah item yang paling sering muncul sejumlah 
-                        most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
+                        **Most Common** is a parameter that can be adjusted to display the number of items that appear most frequently, based on the specified number of most common items from the n-gram analysis. (The larger the most common, the longer the data will take to load)
                         ''')
             
             # @st.cache_data(persist=True)
@@ -2968,12 +2937,11 @@ def analysis():
         
         
         with tab_network_tokped:
-            st.write('Network Analisis Seluruh Data N-gram 4 kata menjadi 2 kata')
+            st.write('Network Analysis of All Data N-gram 4 into 2 words')
             st.markdown('''
                         **Note:** 
                         
-                        **Most Common** adalah parameter yang dapat diubah ubah untuk menampilkan jumlah item yang paling sering muncul sejumlah 
-                        most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
+                        **Most Common**  is a parameter that can be modified to display the number of items that appear most frequently, based on the specified number of most common items from the n-gram analysis. (The larger the most common, the longer the loading time for the data)
                         ''')
             
             # @st.cache_data(persist=True)

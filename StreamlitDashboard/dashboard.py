@@ -57,7 +57,7 @@ def dashboard():
             st.image(image, use_column_width=use_column_width)
 
         # Tampilan gambar header
-        display_image("./assets/gambar/dashboard title.png", use_column_width=True)
+        display_image("./assets/gambar/dashboard_title_id.png", use_column_width=True)
         
         # Load dataset
         df_clean_shopee = pd.read_parquet("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.parquet")
@@ -109,13 +109,13 @@ def dashboard():
                 cols2 = st.columns([1, 1, 1])
 
                 with cols2[0]:
-                    st.write(text_analyzer_project.display_statistics(stats_shopee, "Shopee"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_id(stats_shopee, "Shopee"), unsafe_allow_html=True)
 
                 with cols2[1]:
-                    st.write(text_analyzer_project.display_statistics(stats_lazada, "Lazada"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_id(stats_lazada, "Lazada"), unsafe_allow_html=True)
 
                 with cols2[2]:
-                    st.write(text_analyzer_project.display_statistics(stats_tokped, "Tokopedia"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_id(stats_tokped, "Tokopedia"), unsafe_allow_html=True)
         
 
         # Mengatur kolom untuk menampilkan card secara horizontal
@@ -1157,7 +1157,7 @@ def dashboard():
             st.image(image, use_column_width=use_column_width)
 
         # Tampilan gambar header
-        display_image("./assets/gambar/dashboard title.png", use_column_width=True)
+        display_image("./assets/gambar/dashboard_title_en.png", use_column_width=True)
         
         # Load dataset
         df_clean_shopee = pd.read_parquet("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.parquet")
@@ -1185,14 +1185,9 @@ def dashboard():
         
         
         st.markdown(''' 
-                    Berikut ini adalah dashboard sentiment analisis marketplace online dengan fokus aplikasi shopee, lazada dan tokopedia.
-                    Dataset yang ditampilkan adalah dataset yang sudah dipreprocessing (lower case, remove emoji, text cleaning, slang tranformation dan 
-                    remove stopwords) dapat dilihat pada bagian preprocessing data. Pembaca juga dapat melihat exploratory data analisis pada bagian 
-                    exploratory data analisis.
-                    Dataset ini terdiri dari beberapa kolom, yaitu : content : berisi review pelanggan pengguna aplikasi yang sudah dipreprocessing, 
-                    at : tanggal dan waktu review pelanggan pengguna, year : tahun review pelanggan pengguna.
-                    
-                                
+                    This is the online marketplace sentiment analysis dashboard focusing on Shopee, Lazada, and Tokopedia applications. The dataset displayed has already been preprocessed (lowercase, emoji removal, text cleaning, slang transformation, 
+                    and stopword removal), which can be seen in the data preprocessing section. Readers can also view the exploratory data analysis in the exploratory data analysis section. The dataset consists of several columns, namely: content: containing 
+                    customer reviews of the application that have been preprocessed, at: the date and time of the customer review, and year: the year of the customer review.
                                 ''')
         
         
@@ -1209,13 +1204,13 @@ def dashboard():
                 cols2 = st.columns([1, 1, 1])
 
                 with cols2[0]:
-                    st.write(text_analyzer_project.display_statistics(stats_shopee, "Shopee"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_en(stats_shopee, "Shopee"), unsafe_allow_html=True)
 
                 with cols2[1]:
-                    st.write(text_analyzer_project.display_statistics(stats_lazada, "Lazada"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_en(stats_lazada, "Lazada"), unsafe_allow_html=True)
 
                 with cols2[2]:
-                    st.write(text_analyzer_project.display_statistics(stats_tokped, "Tokopedia"), unsafe_allow_html=True)
+                    st.write(text_analyzer_project.display_statistics_en(stats_tokped, "Tokopedia"), unsafe_allow_html=True)
         
 
         # Mengatur kolom untuk menampilkan card secara horizontal
@@ -1229,12 +1224,12 @@ def dashboard():
                                 color='marketplace', 
                                 barmode='group', 
                                 labels={'year':'Year', 'marketplace':'Marketplace'},
-                                title='Perbandingan Jumlah Ulasan Berdasarkan Tahun')
+                                title='Comparison of the Number of Reviews by Year')
 
                 # Menyesuaikan tampilan
                 fig.update_layout(
-                    xaxis_title='Tahun', 
-                    yaxis_title='Jumlah Ulasan', 
+                    xaxis_title='Year', 
+                    yaxis_title='Number of Reviews', 
                     title_x=0.2, 
                     template='plotly_white',
                     plot_bgcolor='white',  # Background plot menjadi putih
@@ -1273,9 +1268,9 @@ def dashboard():
                 df_ngram_tokped = text_analyzer_project.combine_top_ngram_df(df_clean_tokped, col='content', n=n, most_common=most_common)
 
                 # Menambahkan kolom marketplace
-                df_ngram_shopee['marketplace'] = 'Shopee'
-                df_ngram_lazada['marketplace'] = 'Lazada'
-                df_ngram_tokped['marketplace'] = 'Tokopedia'
+                df_ngram_shopee['Marketplace'] = 'Shopee'
+                df_ngram_lazada['Marketplace'] = 'Lazada'
+                df_ngram_tokped['Marketplace'] = 'Tokopedia'
 
                 # Menggabungkan semua DataFrame
                 combined_ngram_df = pd.concat([df_ngram_shopee, df_ngram_lazada, df_ngram_tokped])
@@ -1288,9 +1283,9 @@ def dashboard():
                 fig = px.bar(combined_ngram_df, 
                             x='ngram', 
                             y='frequency', 
-                            color='marketplace', 
+                            color='Marketplace', 
                             labels={'ngram': 'N-gram', 'frequency': 'Frequency'},
-                            title='Top 5 N-grams Yang Sering Muncul Diketiga Marketplace')
+                            title='Top 5 Most Frequent N-grams Across the Three Marketplaces')
 
                 # Menyesuaikan tampilan
                 fig.update_layout(
@@ -1460,11 +1455,11 @@ def dashboard():
             st.markdown(f"""
             <div style="background-color: #ffffff; padding: 10px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0px 3px 6px rgba(0,0,0,0.1);">
                 <h4 style="color: #333333; margin-bottom: 8px;">{platform}</h4>
-                <h5 style="color: #008000; margin-bottom: 4px;">Sentimen Positif</h5>
+                <h5 style="color: #008000; margin-bottom: 4px;">Positive Sentiment</h5>
                 <p style="color: #000000; font-size: 14px; margin-bottom: 8px;">{positive}</p>
-                <h5 style="color: #FF0000; margin-bottom: 4px;">Sentimen Negatif</h5>
+                <h5 style="color: #FF0000; margin-bottom: 4px;">Negative Sentiment</h5>
                 <p style="color: #000000; font-size: 14px; margin-bottom: 8px;">{negative}</p>
-                {'<h5 style="color: #000080; margin-bottom: 4px;">Sentimen Netral</h5><p style="color: #000000; font-size: 14px; margin-bottom: 8px;">' + neutral + '</p>' if neutral else ''}
+                {'<h5 style="color: #000080; margin-bottom: 4px;">Neutral Sentiment</h5><p style="color: #000000; font-size: 14px; margin-bottom: 8px;">' + neutral + '</p>' if neutral else ''}
             </div>
             """, unsafe_allow_html=True)
 
@@ -1473,16 +1468,16 @@ def dashboard():
         with col_nar[0]:
             with st.container(height=380, border=True):
                 # Layout Streamlit# Shopee
-                positive_shopee = "Kata 'Belanja Shopee' sering dikaitkan dengan 'gratis ongkir', pengguna merasa terbantu dalam memenuhi kebutuhan."
-                negative_shopee = "Kata 'Barang tidak' sering kali terkait dengan barang yang tidak sesuai pesanan, deskripsi, atau gambar. 'Biaya layanan' dan 'biaya penanganan' juga menimbulkan sentimen negatif, walau tidak sering dibahas."
+                positive_shopee = "The phrase 'Belanja Shopee' is often associated with 'gratis ongkir', as users feel it helps them meet their needs."
+                negative_shopee = "The phrase 'Barang tidak' is often associated with items that do not match the order, description, or image. 'Biaya layanan' and 'biaya penanganan' also generate negative sentiment, although they are not frequently discussed."
                 display_summary("Shopee", positive_shopee, negative_shopee)
                 
 
         with col_nar[1]:
             with st.container(height=380, border=True):
                 # Lazada
-                positive_lazada = "Kata 'Belanja Lazada' dikaitkan dengan kemudahan, harga murah, dan pengiriman cepat."
-                negative_lazada = "Kata 'Barang tidak' dan 'gratis ongkir' kadang menerima ulasan negatif terkait ketidaksesuaian barang dan batasan minimal belanja untuk voucher."
+                positive_lazada = "The phrase 'Belanja Lazada' is associated with convenience, low prices, and fast shipping."
+                negative_lazada = "The phrases 'Barang tidak' and 'gratis ongkir' sometimes receive negative reviews related to item mismatches and minimum purchase requirements for vouchers."
                 display_summary("Lazada", positive_lazada, negative_lazada)
                 st.write("")
                 st.write("")
@@ -1491,8 +1486,8 @@ def dashboard():
         with col_nar[2]:
             with st.container(height=380, border=True):
                 # Tokopedia
-                positive_tokopedia = "Kata 'Terimakasih Tokopedia' sering dikaitkan dengan 'Skill Academy' dan 'sangat membantu', dengan ulasan positif mengenai kemudahan dan manfaat dari pelatihan yang disediakan."
-                neutral_tokopedia = "Kata 'Skill Academy' terkait dengan pelatihan prakerja mendapat ulasan netral."
+                positive_tokopedia = "The phrase 'Terimakasih Tokopedia' is often associated with 'Skill Academy' and 'sangat membantu', with positive reviews regarding the ease and benefits of the provided training."
+                neutral_tokopedia = "The phrase 'Skill Academy' related to pre-employment training receives neutral reviews."
                 display_summary("Tokopedia", positive_tokopedia, "", neutral_tokopedia)
         
         
@@ -1646,7 +1641,7 @@ def dashboard():
                     G.add_edge(items[0], items[1], weight=count)
 
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential 4-word N-gram becomes 2-word')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -1654,7 +1649,7 @@ def dashboard():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['4-word N-gram becomes 2-word', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -1673,7 +1668,7 @@ def dashboard():
                     G.add_edge(items[0], items[1], weight=count)
 
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential 4-word N-gram becomes 2-word')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -1681,7 +1676,7 @@ def dashboard():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['4-word N-gram becomes 2-word', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -1700,7 +1695,7 @@ def dashboard():
                     G.add_edge(items[0], items[1], weight=count)
 
                 with st.container(height=350, border=True):
-                    st.write('Most Influential (Paling Berpengaruh) N-gram 4 kata menjadi 2 kata')
+                    st.write('Most Influential 4-word N-gram becomes 2-word')
                     
                     # Most Influential
                     most_influential = nx.degree_centrality(G)
@@ -1708,7 +1703,7 @@ def dashboard():
                     # Convert to DataFrame
                     df_most_influential = pd.DataFrame(
                         sorted(most_influential.items(), key=lambda x: x[1], reverse=True), 
-                        columns=['N-gram 4 kata menjadi 2 kata', 'Degree Centrality']
+                        columns=['4-word N-gram becomes 2-word', 'Degree Centrality']
                     )
                     
                     # Display DataFrame
@@ -1945,19 +1940,17 @@ def dashboard():
         
         
         with st.container(height=300, border=True):
-                    st.write('Network Analisis Seluruh Data N-gram 4 kata menjadi 2 kata')
+                    st.write('Network Analysis of All Data: 4-word N-gram becomes 2-word')
                     st.markdown('''
                                 **Noted :**
                                 
-                                **"Most Common"** adalah parameter yang dapat diubah ubah untuk menampilkan jumlah item yang paling sering muncul sejumlah 
-                                most common dari hasil analisis n-gram. (Semakin besar most common semakin lama loading data)
+                                **"Most Common"** is a parameter that can be adjusted to display the number of items that appear most frequently based on the results of the n-gram analysis. (The larger the most common, the longer the data loading time).
                                 
-                                **"Center Node atau Node Pusat"** adalah titik fokus atau simpul utama dalam sebuah graf yang menjadi pusat perhatian atau 
-                                referensi dalam analisis.                                                                  
-                                **"Pilih parameter center node berdasarkan kata yang ada di Most influencial**"" (Center node yang diinput default)
+                                **"Center Node"**  is the focal point or main node in a graph that serves as the center of attention or reference in the analysis.
+                                                                                                 
+                                **"Select the center node parameter based on the words in Most Influential**"" (The default center node input).
                                 
-                                **"Depth atau Kedalaman"** dalam konteks graf menunjukkan seberapa jauh Anda ingin mengeksplorasi 
-                                dari node pusat. Ini mengacu pada jumlah lapisan atau tingkat kedekatan yang ingin Anda pertimbangkan dalam analisis.
+                                **"Depth"** in the context of a graph indicates how far you want to explore from the center node. It refers to the number of layers or levels of closeness you wish to consider in the analysis.
                                 ''')
         
         
@@ -2001,7 +1994,7 @@ def dashboard():
                             return fig
                         else:
                             st.info('''
-                            **"Pilih parameter center node berdasarkan kata yang ada di Most influencial**"" (Center node yang diinput default)
+                            **"Select the center node parameter based on the words in Most Influential**"" (The input center node is default)
                             ''')
                             return None
 
@@ -2061,8 +2054,7 @@ def dashboard():
                             return fig
                         else:
                             st.info('''
-                            **"Pilih parameter center node berdasarkan kata yang ada di Most influencial, Most importance 
-                                connection dan Best connector**"" (Center node yang diinput default)
+                            **"Select the center node parameter based on the words in Most Influential, Most Important Connection, and Best Connector**"" (The input center node is default)
                             ''')
                             return None
 
@@ -2122,8 +2114,7 @@ def dashboard():
                             return fig
                         else:
                             st.info('''
-                            **"Pilih parameter center node berdasarkan kata yang ada di Most influencial, Most importance 
-                                connection dan Best connector**"" (Center node yang diinput default)
+                            **"Select the center node parameter based on the words in Most Influential, Most Important Connection, and Best Connector**"" (The input center node is default)
                             ''')
                             return None
 
