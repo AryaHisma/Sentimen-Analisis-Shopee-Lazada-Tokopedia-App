@@ -429,6 +429,110 @@ def plot_letter_frequency_distribution(df, column, bins):
     
     return fig
 
+
+def plot_letter_frequency_distribution_en(df, column, bins):
+    """
+    Menampilkan distribusi frekuensi jumlah huruf pada kolom tertentu menggunakan Plotly,
+    termasuk garis KDE (Kernel Density Estimation).
+    
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - column: Nama kolom yang akan dianalisis.
+    - bins: Jumlah bin untuk histogram.
+    
+    Returns:
+    - fig: Objek Plotly figure yang dapat digunakan di Streamlit.
+    """
+    # Menghitung jumlah huruf untuk setiap entri teks di kolom yang ditentukan
+    df['length'] = df[column].apply(lambda x: len(str(x)))
+    
+    # Menghitung frekuensi jumlah huruf
+    counts, edges = np.histogram(df['length'], bins=bins)
+    
+    # Menghitung midpoints untuk setiap bin
+    bin_centers = (edges[:-1] + edges[1:]) / 2
+    
+    # Menghitung KDE
+    kde = gaussian_kde(df['length'])
+    kde_x = np.linspace(df['length'].min(), df['length'].max(), 1000)
+    kde_y = kde.pdf(kde_x)
+    kde_y = kde_y * (edges[1] - edges[0]) * len(df['length']) / kde_y.sum()  # Normalisasi KDE
+    
+    # Membuat histogram
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=bin_centers,
+        y=counts,
+        width=(edges[1] - edges[0]) * 0.8,  # Menambahkan jarak antar bin
+        marker_color='skyblue',
+        showlegend=False  # Menghilangkan legend
+    ))
+    
+    # Menambahkan garis KDE
+    fig.add_trace(go.Scatter(
+        x=kde_x,
+        y=kde_y,
+        mode='lines',
+        line=dict(color='green', width=2),
+        showlegend=False  # Menghilangkan legend
+    ))
+    
+    # Menghitung rata-rata jumlah huruf
+    mean_length = df['length'].mean()
+    
+    # Menambahkan garis rata-rata
+    fig.add_shape(
+        type='line',
+        x0=mean_length, x1=mean_length,
+        y0=0, y1=max(counts),
+        line=dict(color='red', dash='dash', width=2),
+        name='Average'
+    )
+    
+    # Menambahkan label pada garis rata-rata
+    fig.add_annotation(
+        x=mean_length,
+        y=max(counts), #a * 0.9,
+        text=f'Average: {mean_length:.2f}',
+        showarrow=True,
+        arrowhead=2,
+        font=dict(color='red', size=12)
+    )
+    
+    # Mengatur layout
+    fig.update_layout(
+        title={
+            'text': 'Frequency Distribution of Letter Count',
+            'x': 0.5,
+            'xanchor': 'center',
+            'font': {'size': 16, 'color': 'black'}
+        },
+        xaxis_title='Number of Letters',
+        yaxis_title='Frequency',
+        xaxis=dict(
+            range=[0, max(df['length']) + 100],  # Interval sumbu x dimulai dari 0
+            dtick=200,  # Interval sumbu x
+            title_font=dict(size=14, color='black'),
+            tickfont=dict(size=12, color='black'),
+            showline=True,  # Menampilkan garis sumbu x
+            linecolor='black'  # Warna garis sumbu x
+        ),
+        yaxis=dict(
+            range=[0, max(counts) + 100],  # Interval sumbu y dimulai dari 0
+            dtick=500,  # Interval sumbu y
+            title_font=dict(size=14, color='black'),
+            tickfont=dict(size=12, color='black'),
+            showline=True,  # Menampilkan garis sumbu y
+            linecolor='black'  # Warna garis sumbu y
+        ),
+        plot_bgcolor='white',  # Background putih
+        paper_bgcolor='white',  # Background plotly putih
+        margin=dict(l=40, r=40, t=60, b=40),  # Margin
+        bargap=0.2  # Jarak antar bar histogram
+    )
+    
+    return fig
+
 # def freq_of_words(df, col):
 #     """
 #     Menampilkan histogram distribusi frekuensi jumlah kata per teks dalam kolom yang ditentukan.
@@ -799,6 +903,106 @@ def freq_of_words_plotly_analisis(df, col):
     return fig
 
 
+def freq_of_words_plotly_analisis_en(df, col):
+    """
+    Menampilkan histogram distribusi frekuensi jumlah kata per teks dalam kolom yang ditentukan.
+    
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk jumlah kata.
+    
+    Returns:
+    - fig: Plotly figure object untuk digunakan di Streamlit.
+    """
+    # Mengganti nilai NaN dengan string kosong, atau memeriksa apakah elemen adalah string
+    df[col] = df[col].fillna('')  # Mengganti NaN dengan string kosong
+    words = df[col].apply(lambda x: len(str(x).split()))  # Menghitung jumlah kata hanya untuk string
+    
+    # Menentukan rentang bins
+    bins_range = np.arange(0, 50, 1)
+
+    # Hitung histogram
+    hist_values, bin_edges = np.histogram(words, bins=bins_range, density=False)
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+    # Hitung KDE
+    kde = gaussian_kde(words, bw_method=0.3)  # Bandwidth method dapat disesuaikan
+    kde_x = np.linspace(0, 50, 1000)
+    kde_y = kde.pdf(kde_x)
+    
+    # Menyesuaikan KDE dengan skala histogram
+    kde_y = kde_y * hist_values.max() * (bin_edges[1] - bin_edges[0]) / kde_y.max()
+
+    # Membuat histogram dan KDE menggunakan Plotly
+    fig = go.Figure()
+
+    # Tambahkan histogram
+    fig.add_trace(go.Bar(
+        x=bin_centers,
+        y=hist_values,
+        marker_color='skyblue',
+        name='Frekuensi',
+        opacity=0.7
+    ))
+
+    # Tambahkan KDE
+    fig.add_trace(go.Scatter(
+        x=kde_x,
+        y=kde_y,
+        mode='lines',
+        line=dict(color='green', width=2),
+        name='KDE'
+    ))
+
+    # Mengatur layout
+    fig.update_layout(
+        title={'text': 'Frequency Distribution of Word Count per Text', 'x': 0.2, 'font': {'color': 'black', 'size': 15}},
+        xaxis_title='Word Count',
+        yaxis_title='Frequency',
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        xaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=10,  # Interval setiap 10
+            range=[0, 50],  # Batas maksimum sumbu x
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu x
+            zerolinecolor='black',  # Warna garis sumbu x
+            zerolinewidth=2  # Ketebalan garis sumbu x
+        ),
+        yaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=500,  # Interval setiap 500
+            range=[0, max(hist_values) + 500],  # Batas maksimum sumbu y   
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu y
+            zerolinecolor='black',  # Warna garis sumbu y
+            zerolinewidth=2  # Ketebalan garis sumbu y
+        ),
+        font=dict(color='black'),  # Mengatur warna teks pada keseluruhan plot
+        showlegend=False  # Menghilangkan legend
+    )
+    
+    # Menambahkan garis vertikal untuk nilai rata-rata
+    mean_value = words.mean()
+    fig.add_shape(type='line',
+                  x0=mean_value, y0=0, x1=mean_value, y1=max(hist_values) + 500,
+                  line=dict(color='red', dash='dash', width=2))
+    fig.add_annotation(x=mean_value, y=max(hist_values) - 500,
+                       text=f'Average: {mean_value:.2f}',
+                       showarrow=True,
+                       arrowhead=1,
+                       ax=30,
+                       ay=-40,
+                       font=dict(color='red', size=12))
+
+    return fig
+
+
 # def freq_meanlength_word(df, col):
 #     """
 #     Menampilkan histogram distribusi frekuensi panjang kata rata-rata dalam kolom yang ditentukan.
@@ -961,6 +1165,106 @@ def freq_meanlength_word(df, col):
 
     return fig
 
+
+def freq_meanlength_word_en(df, col):
+    """
+    Menampilkan histogram distribusi frekuensi panjang kata rata-rata dalam kolom yang ditentukan.
+    
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk panjang kata rata-rata.
+    
+    Returns:
+    - fig: Plotly figure object untuk digunakan di Streamlit.
+    """
+    # Menghitung panjang rata-rata setiap kata dalam teks
+    words_mean_length = df[col].str.split().apply(lambda x: np.mean([len(word) for word in x if len(word) > 0]))
+
+    # Menghilangkan nilai NaN yang mungkin muncul dari teks kosong
+    words_mean_length = words_mean_length.dropna()
+
+    # Membuat histogram
+    hist_values, bin_edges = np.histogram(words_mean_length, bins=50)
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+    # Membuat KDE
+    kde = gaussian_kde(words_mean_length, bw_method=0.3)
+    kde_x = np.linspace(0, words_mean_length.max(), 1000)
+    kde_y = kde.evaluate(kde_x)  # Menggunakan evaluate untuk mendapatkan nilai KDE
+
+    # Menyesuaikan KDE dengan skala histogram tanpa normalisasi
+    kde_y = kde_y * (hist_values.max() * (bin_edges[1] - bin_edges[0]))
+
+    # Membuat figure Plotly
+    fig = go.Figure()
+
+    # Menambahkan histogram ke figure
+    fig.add_trace(go.Bar(
+        x=bin_centers,
+        y=hist_values,
+        marker_color='skyblue',
+        name='Frekuensi',
+        opacity=0.7
+    ))
+
+    # Menambahkan KDE ke figure
+    fig.add_trace(go.Scatter(
+        x=kde_x,
+        y=kde_y,
+        mode='lines',
+        line=dict(color='green', width=2),
+        name='KDE'
+    ))
+
+    # Mengatur layout
+    fig.update_layout(
+        title={'text': 'Frequency Distribution of Average Word Length', 'x': 0.1, 'font': {'color': 'black', 'size': 16}},
+        xaxis_title='Average Word Length',
+        yaxis_title='Frequency',
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        xaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=10,  # Interval sumbu x setiap 10
+            range=[0, max(words_mean_length + 10)],  # Batas maksimum sumbu x
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu x
+            zerolinecolor='black',  # Warna garis sumbu x
+            zerolinewidth=2  # Ketebalan garis sumbu x
+        ),
+        yaxis=dict(
+            gridcolor='lightgrey',
+            tick0=0,
+            dtick=2000,  # Interval sumbu y setiap 500
+            range=[0, hist_values.max() + 500],  # Batas maksimum sumbu y
+            title_font=dict(color='black'),
+            tickfont=dict(color='black'),
+            zeroline=True,  # Menampilkan garis sumbu y
+            zerolinecolor='black',  # Warna garis sumbu y
+            zerolinewidth=2,  # Ketebalan garis sumbu y
+            tickformat=',d'  # Format angka pada sumbu y sebagai angka lengkap
+        ),
+        font=dict(color='black'),  # Mengatur warna teks pada keseluruhan plot
+        showlegend=False  # Menghilangkan legend
+    )
+
+    # Menambahkan garis vertikal untuk nilai rata-rata
+    mean_value = words_mean_length.mean()
+    fig.add_shape(type='line',
+                  x0=mean_value, y0=0, x1=mean_value, y1=hist_values.max(),
+                  line=dict(color='red', dash='dash', width=2))
+    fig.add_annotation(x=mean_value, y=hist_values.max(),
+                       text=f'Average: {mean_value:.2f}',
+                       showarrow=True,
+                       arrowhead=1,
+                       ax=30,
+                       ay=-30,
+                       font=dict(color='red', size=12))
+
+    return fig
+
     
 # def generate_wordcloud(df, col):
 #     """
@@ -984,7 +1288,7 @@ def freq_meanlength_word(df, col):
 #     plt.show()
 
 
-def generate_wordcloud(df, col):
+def generate_wordcloud_id(df, col):
     """
     Menampilkan WordCloud dari teks dalam kolom yang ditentukan.
     
@@ -1008,6 +1312,35 @@ def generate_wordcloud(df, col):
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
     ax.set_title('WordCloud untuk Kolom {}'.format(col), fontsize=16)
+
+    # Mengembalikan objek figure
+    return fig
+
+
+def generate_wordcloud_en(df, col):
+    """
+    Menampilkan WordCloud dari teks dalam kolom yang ditentukan.
+    
+    Parameters:
+    - df: DataFrame yang berisi teks.
+    - col: Nama kolom yang akan dianalisis untuk WordCloud.
+    
+    Returns:
+    - fig: Matplotlib figure object untuk digunakan di Streamlit.
+    """
+    # Gabungkan semua teks menjadi satu string
+    text = ' '.join(df[col].astype(str))
+
+    # Inisialisasi WordCloud
+    wordcloud = WordCloud(width=800, height=550, background_color='white').generate(text)
+
+    # Membuat objek figure dan axis
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # Tampilkan WordCloud
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    ax.set_title('Word Cloud for Column {}'.format(col), fontsize=16)
 
     # Mengembalikan objek figure
     return fig
@@ -1601,7 +1934,7 @@ def calculate_text_statistics(df, text_column):
 #         st.metric(label="Panjang Kata Rata-rata", value=f"{stats['avg_word_length']:.2f}")
 
 
-def display_statistics(stats, marketplace_name):
+def display_statistics_id(stats, marketplace_name):
     """
     Menampilkan statistik dalam bentuk card secara horizontal di Streamlit dengan border dan background putih,
     serta teks berwarna hitam. Statistik ditampilkan dalam card-card kecil di dalam card utama.
@@ -1639,7 +1972,7 @@ def display_statistics(stats, marketplace_name):
                 margin: 0px 0;
                 box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
             ">
-                <p style="margin: 0; color: black;">Rata-rata Jumlah Huruf: <strong>{stats['avg_num_chars']:.2f}</strong></p>
+                <p style="margin: 0; color: black;">Rata-rata Jumlah Huruf : <strong>{stats['avg_num_chars']:.2f}</strong></p>
             </div>
             <div style="
                 background-color: #f9f9f9;
@@ -1649,7 +1982,7 @@ def display_statistics(stats, marketplace_name):
                 margin: 0px 0;
                 box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
             ">
-                <p style="margin: 0; color: black;">Rata-rata Jumlah Kata Per Teks: <strong>{stats['avg_num_words']:.2f}</strong></p>
+                <p style="margin: 0; color: black;">Rata-rata Jumlah Kata Per Teks : <strong>{stats['avg_num_words']:.2f}</strong></p>
             </div>
             <div style="
                 background-color: #f9f9f9;
@@ -1659,7 +1992,74 @@ def display_statistics(stats, marketplace_name):
                 margin: 0px 0;
                 box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
             ">
-                <p style="margin: 0; color: black;">Panjang Kata Rata-rata: <strong>{stats['avg_word_length']:.2f}</strong></p>
+                <p style="margin: 0; color: black;">Panjang Kata Rata-rata : <strong>{stats['avg_word_length']:.2f}</strong></p>
+            </div>
+        </div>
+    </div>
+    """
+    
+    return card_main_html
+
+
+def display_statistics_en(stats, marketplace_name):
+    """
+    Menampilkan statistik dalam bentuk card secara horizontal di Streamlit dengan border dan background putih,
+    serta teks berwarna hitam. Statistik ditampilkan dalam card-card kecil di dalam card utama.
+    
+    Parameters:
+    - stats: dictionary dengan statistik
+    - marketplace_name: Nama marketplace
+    """
+    # HTML dan CSS untuk card utama
+    card_main_html = f"""
+    <div style="
+        background-color: white;
+        border: 1px solid #e1e1e1;
+        border-radius: 0px;
+        padding: 10px;
+        margin: 0px;
+        box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        display: flex;
+        flex-direction: column;
+        max-width: 550px;
+        text-align: left;
+    ">
+        <h4 style="margin: 0; color: black;">{marketplace_name}</h4>
+        <div style="
+            display: flex;
+            flex-direction: row;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        ">
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Average Number of Letters : <strong>{stats['avg_num_chars']:.2f}</strong></p>
+            </div>
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Average Number of Words Per Text : <strong>{stats['avg_num_words']:.2f}</strong></p>
+            </div>
+            <div style="
+                background-color: #f9f9f9;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                padding: 8px;
+                margin: 0px 0;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
+            ">
+                <p style="margin: 0; color: black;">Average Word Length : <strong>{stats['avg_word_length']:.2f}</strong></p>
             </div>
         </div>
     </div>

@@ -1,19 +1,16 @@
 # Sentimen-Analisis-Marketplace-App
-
-![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/screenshoot.png)
-
-
-Berikut ini adalah sentiment analisis marketplace online dengan fokus aplikasi Shopee, Lazada, dan Tokopedia.  
-Dataset yang ditampilkan adalah dataset yang sudah dipreprocessing (lower case, remove emoji, text cleaning, slang transformation, dan remove stopwords) dapat dilihat pada bagian preprocessing data.  
-Pembaca juga dapat melihat exploratory data analysis pada bagian exploratory data analysis.  
-Dataset ini terdiri dari beberapa kolom, yaitu:
-- **content**: Berisi review pelanggan pengguna aplikasi yang sudah dipreprocessing.
-- **at**: Tanggal dan waktu review pelanggan pengguna.
-- **year**: Tahun review pelanggan pengguna.
+Selamat datang di **Sentimen Analisis Marketplace App**! Proyek ini bertujuan untuk menganalisis ulasan pengguna dari aplikasi e-commerce populer di Indonesia, seperti **Shopee**, **Lazada**, dan **Tokopedia** yang bersumber dari **google play store**.
 
 
-![images](https://github.com/AryaHisma/Sentimen-Analisis-Shopee-Lazada-Tokopedia-App/blob/main/assets/gambar/alur.jpg)
+Welcome to the Sentiment Analysis Marketplace App! This project aims to analyze user reviews from popular e-commerce apps in Indonesia, such as **Shopee**, **Lazada**, and **Tokopedia**, sourced from the **Google Play Store**.
 
+## Dokumentasi Proyek / Project Documentation
+**Pilih bahasa / Choose your language :**
+- [English](README-en.md)
+- [Bahasa Indonesia](README-id.md)
+
+## Cara Mengakses Aplikasi / How to Access the Application
+[Sentimen Analisis Marketplace App](https://marketplace-sentiment-apps.streamlit.app/)
 
 
 
