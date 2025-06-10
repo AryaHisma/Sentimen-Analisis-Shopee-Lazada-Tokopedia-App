@@ -64,37 +64,37 @@ def analysis():
     if selected_language == "Bahasa Indonesia":
         with st.container(height=310):
             @st.cache_data(persist=True)
-            def display_image(image_path, use_column_width=True, channels="RGB"):
+            def display_image(image_path, use_container_width=True, channels="RGB"):
                 """
                 Menampilkan gambar di Streamlit.
                 
                 Parameters:
                 - image_path (str): Path ke file gambar.
-                - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+                - use_container_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
                 - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
                 """
                 image = Image.open(image_path)
-                st.image(image, use_column_width=use_column_width, channels=channels)
+                st.image(image, use_container_width=use_container_width, channels=channels)
 
-            display_image("./assets/gambar/PREPROCES_id.png", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/PREPROCES_id.png", use_container_width=True, channels="RGB")
             
             
             
         with st.container(height=830):
             @st.cache_data(persist=True)
-            def display_image(image_path, use_column_width=True, channels="RGB"):
+            def display_image(image_path, use_container_width=True, channels="RGB"):
                 """
                 Menampilkan gambar di Streamlit.
                 
                 Parameters:
                 - image_path (str): Path ke file gambar.
-                - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+                - use_container_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
                 - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
                 """
                 image = Image.open(image_path)
-                st.image(image, use_column_width=use_column_width, channels=channels)
+                st.image(image, use_container_width=use_container_width, channels=channels)
 
-            display_image("./assets/gambar/alur_id.jpg", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/alur_id.jpg", use_container_width=True, channels="RGB")
             
             
         # Header datset
@@ -1547,37 +1547,37 @@ def analysis():
     else:
         with st.container(height=310):
             @st.cache_data(persist=True)
-            def display_image(image_path, use_column_width=True, channels="RGB"):
+            def display_image(image_path, use_container_width=True, channels="RGB"):
                 """
                 Menampilkan gambar di Streamlit.
                 
                 Parameters:
                 - image_path (str): Path ke file gambar.
-                - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+                - use_container_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
                 - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
                 """
                 image = Image.open(image_path)
-                st.image(image, use_column_width=use_column_width, channels=channels)
+                st.image(image, use_container_width=use_container_width, channels=channels)
 
-            display_image("./assets/gambar/PREPROCES_id.png", use_column_width=True, channels="RGB")
+            display_image("./assets/gambar/PREPROCES_id.png", use_container_width=True, channels="RGB")
             
             
             
         with st.container(height=830):
             @st.cache_data(persist=True)
-            def display_image_en(image_path, use_column_width=True, channels="RGB"):
+            def display_image_en(image_path, use_container_width=True, channels="RGB"):
                 """
                 Menampilkan gambar di Streamlit.
                 
                 Parameters:
                 - image_path (str): Path ke file gambar.
-                - use_column_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
+                - use_container_width (bool): Menentukan apakah gambar akan menggunakan lebar kolom penuh.
                 - channels (str): Mode channel warna, bisa "RGB", "RGBA", dll.
                 """
                 image = Image.open(image_path)
-                st.image(image, use_column_width=use_column_width, channels=channels)
+                st.image(image, use_container_width=use_container_width, channels=channels)
 
-            display_image_en("./assets/gambar/alur_en.png", use_column_width=True, channels="RGB")
+            display_image_en("./assets/gambar/alur_en.png", use_container_width=True, channels="RGB")
             
             
         # Header datset
