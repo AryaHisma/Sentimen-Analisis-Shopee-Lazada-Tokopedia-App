@@ -52,12 +52,12 @@ def dashboard():
     # Menampilkan konten berdasarkan pilihan bahasa
     if selected_language == "Bahasa Indonesia":
         # Menampilkan gambar di atas dashboard
-        def display_image(image_path, use_column_width=True):
+        def display_image(image_path, use_container_width=True):
             image = Image.open(image_path)
-            st.image(image, use_column_width=use_column_width)
+            st.image(image, use_container_width=use_container_width)
 
         # Tampilan gambar header
-        display_image("./assets/gambar/dashboard_title_id.png", use_column_width=True)
+        display_image("./assets/gambar/dashboard_title_id.png", use_container_width=True)
         
         # Load dataset
         df_clean_shopee = pd.read_parquet("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.parquet")
@@ -1152,12 +1152,12 @@ def dashboard():
     
     else :
         # Menampilkan gambar di atas dashboard
-        def display_image(image_path, use_column_width=True):
+        def display_image(image_path, use_container_width=True):
             image = Image.open(image_path)
-            st.image(image, use_column_width=use_column_width)
+            st.image(image, use_container_width=use_container_width)
 
         # Tampilan gambar header
-        display_image("./assets/gambar/dashboard_title_en.png", use_column_width=True)
+        display_image("./assets/gambar/dashboard_title_en.png", use_container_width=True)
         
         # Load dataset
         df_clean_shopee = pd.read_parquet("./assets/dataset/data_preprocess_shopee/df_stopword_shopee.parquet")
